@@ -2453,6 +2453,24 @@ body {
   width: min(640px, 100%);
 }
 
+.start-account-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 3px 12px;
+  margin: 0 0 8px;
+  padding: 5px 8px;
+  border: 1px solid var(--line-soft);
+  background: rgba(11, 23, 15, 0.7);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.start-account-row b { color: var(--leaf); }
+.start-account-row span { color: var(--muted); }
+
 .result-modal {
   width: min(760px, 100%);
 }
@@ -3192,6 +3210,7 @@ input {
   .run-banner h2 { font-size: 24px; }
   .run-banner p { font-size: 12px; }
   .start-panels { grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 4px; }
+  .start-account-row { margin-bottom: 4px; padding: 2px 5px; gap: 2px 8px; }
   .start-card { padding: 4px 5px; grid-template-columns: 24px minmax(0, 1fr); column-gap: 4px; }
   .start-card img { width: 24px; height: 24px; }
   .start-card p { font-size: 12px; line-height: 1.3; }
@@ -4176,7 +4195,130 @@ button * {
   }
 }
 
+/* ---------- 林场商店：与升级工坊一致的全屏横排界面 ---------- */
+.shop-screen .tree-shell { width: min(1160px, 100%); height: min(860px, calc(100dvh - 20px)); padding: 14px; }
+.shop-screen .tree-head { padding: 0 2px 8px; }
+.shop-screen .tree-title h2 { font-size: 27px; font-weight: 800; }
+.shop-tabs { flex: 0 0 auto; width: min(520px, 100%); margin: 0 0 8px; }
+.shop-tabs .meta-tab { min-height: 32px; height: 32px; font-size: 12px; }
+.shop-screen .tree-hint { font-size: 13px; line-height: 1.5; margin: 0 0 8px; color: #b2c2a1; flex: 0 0 auto; }
+.shop-screen .tree-scroll { padding: 0; background: #0d1c16; border: 1px solid #344d37; }
+.shop-scroll { display: block; }
+
+/* 种子商店：七列树种 */
+.seed-lanes { display: grid; grid-template-columns: repeat(7, minmax(146px, 1fr)); gap: 10px; min-width: 1080px; padding: 12px; align-items: stretch; }
+.seed-lanes .seed-card { display: flex; flex-direction: column; align-items: stretch; gap: 8px; width: 100%; min-height: 232px; padding: 10px 9px 0; border: 1px solid #526347; border-top: 3px solid #7fb45f; background: #1b2c20; box-shadow: 3px 4px 0 #0004; text-align: left; color: #e7e8ce; }
+.seed-lanes .seed-card:hover { background: #243a28; border-color: #8aa873; }
+.seed-lanes .seed-card.selected { border-color: #9abd7c; background: #243322; box-shadow: 3px 4px 0 #0004, 0 0 0 2px #bad795; }
+.seed-lanes .seed-card.locked { opacity: 1; background: #16271e; border-top-color: #8b7b55; }
+.seed-lanes .seed-card.locked .seed-swatch { filter: saturate(.45); }
+.seed-lanes .seed-swatch { width: 100%; height: 84px; margin: 0; border: 1px solid #3f5540; background: radial-gradient(ellipse at 50% 42%, #20362a, #0c1a12 78%); }
+.seed-lanes .seed-swatch img { width: 56px; height: 72px; }
+.seed-lanes .seed-swatch svg { width: 40px; height: 40px; }
+.seed-lanes .seed-info { gap: 3px; }
+.seed-lanes .seed-info b { font-size: 15px; white-space: normal; overflow: visible; text-overflow: clip; }
+.seed-lanes .seed-info small { font-family: inherit; font-size: 11px; line-height: 1.4; color: #a9b89a; white-space: normal; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.seed-metrics { display: flex; flex-wrap: wrap; gap: 4px; }
+.seed-metrics > span { padding: 2px 5px; border: 1px solid #3c5340; background: #10231a; font-size: 10px; line-height: 1.4; color: #b9c9a9; }
+.seed-metrics b { color: #e8edcf; font-size: 11px; }
+.seed-lanes .seed-foot { display: flex; align-items: center; justify-content: space-between; gap: 4px; margin: auto -9px 0; padding: 7px 9px; background: #0e2017; border-top: 1px solid #41523a; }
+.seed-lanes .seed-price { font-size: 12px; padding: 2px 5px; }
+.seed-lanes .seed-price img { width: 18px; height: 18px; }
+.seed-lanes .seed-count { font-size: 12px; padding: 2px 5px; }
+.seed-lanes .seed-selected-tag { font-size: 10px; }
+.seed-lanes .seed-card.is-poor .seed-selected-tag { color: #d79a86; }
+.seed-lanes .seed-card.selected .seed-selected-tag { color: #cfe8a6; }
+
+/* 工具商店：五列工具 */
+.tool-equipped-pill { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border: 1px solid #536143; background: #0c1b16; color: #b8c8a6; font-size: 12px; white-space: nowrap; }
+.tool-equipped-pill b { color: #f0e2b4; font-size: 14px; }
+.tool-lanes { display: grid; grid-template-columns: repeat(5, minmax(168px, 1fr)); gap: 12px; min-width: 900px; padding: 12px; align-items: stretch; }
+.tool-lanes .tool-card { display: flex; flex-direction: column; align-items: stretch; gap: 8px; min-height: 306px; padding: 12px 11px 0; border: 1px solid #526347; border-top: 3px solid #c99a4c; background: #1b2c20; box-shadow: 3px 4px 0 #0004; text-align: left; }
+.tool-lanes .tool-card.owned { border-color: #6f8a5c; background: #21301f; }
+.tool-lanes .tool-card.equipped { border-color: #9abd7c; box-shadow: 3px 4px 0 #0004, 0 0 0 2px #bad795; }
+.tool-icon-plate { display: grid; place-items: center; height: 92px; border: 1px solid #4b6049; background: #0f211b; box-shadow: inset 0 0 0 2px #182e24; }
+.tool-lanes .tool-icon-plate img { width: 56px; height: 56px; image-rendering: pixelated; }
+.tool-lanes .tool-card h3 { font-size: 16px; font-weight: 800; color: #f2e7c7; }
+.tool-lanes .tool-card p { min-height: 52px; font-size: 11.5px; line-height: 1.55; color: #b9c8a9; }
+.tool-lanes .tool-stat { font-size: 10.5px; color: #c8d6b0; }
+.tool-lanes .tool-price { font-size: 15px; color: #f1d281; }
+.tool-lanes .tool-price img { width: 18px; height: 18px; }
+.tool-lanes .tool-action { display: flex; margin: auto -11px 0; padding: 8px 10px; background: #0e2017; border-top: 1px solid #41523a; }
+.tool-lanes .tool-action .pixel-btn { width: 100%; min-height: 34px; font-size: 12px; }
+
+/* 能力构筑：按流派分列的词条图鉴 */
+.shop-screen .hex-count-pill { padding: 4px 8px; }
+.shop-filters { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; flex: 0 0 auto; }
+.shop-filters input[type="search"] { flex: 1 1 240px; }
+.shop-filters select { flex: 0 0 132px; }
+.shop-filters .hex-owned-filter { flex: 0 0 auto; }
+.hex-scroll { padding: 10px 12px 14px; }
+.hex-scroll .hex-collection { margin: 0 0 10px; }
+.hex-catalogue { display: flex; gap: 10px; align-items: flex-start; padding: 0; }
+.hex-catalogue.is-filtered .hex-lane { flex: 0 1 360px; }
+.hex-lane { flex: 1 1 0; min-width: 178px; }
+.hex-lane[data-family="召唤"] { --lane: #6fbdaa; }
+.hex-lane[data-family="飞刃"] { --lane: #c99a4c; }
+.hex-lane[data-family="机甲"] { --lane: #83b7e0; }
+.hex-lane[data-family="元素"] { --lane: #d07a4e; }
+.hex-lane[data-family="奇遇"] { --lane: #9a8fd0; }
+.hex-lane[data-family="基础"] { --lane: #7fb45f; }
+.hex-lane-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 2px 2px 8px; border-bottom: 2px solid var(--lane, #526347); }
+.hex-lane-head b { color: var(--lane, #e7e8ce); font-size: 15px; }
+.hex-lane-head span { color: #9fb28a; font-size: 11px; }
+.hex-lane-cards { display: flex; flex-direction: column; gap: 8px; padding-top: 9px; }
+.hex-lane .hex-entry { display: flex; flex-direction: column; gap: 7px; padding: 9px; }
+.hex-lane .hex-entry-icon { height: 42px; }
+.hex-lane .hex-entry-icon .ta-icon { width: 30px; height: 30px; }
+.hex-lane .hex-entry header b { font-size: 13px; }
+.hex-lane .hex-entry small { margin-top: 2px; }
+.hex-lane .hex-entry p { margin: 2px 0; font-size: 11px; line-height: 1.55; }
+.hex-lane .hex-entry footer { display: block; }
+.hex-catalogue .empty { flex: 1 1 100%; }
+
+@media (max-width: 900px) {
+  .shop-screen .tree-title h2 { font-size: 21px; }
+  .shop-screen .tree-shell { padding: 10px; }
+  .shop-tabs { width: 100%; margin-bottom: 6px; }
+  .shop-screen .tree-hint { font-size: 11.5px; }
+  .seed-lanes { gap: 8px; padding: 9px; }
+  .tool-lanes { gap: 9px; padding: 9px; }
+  .hex-scroll { padding: 8px 9px 10px; }
+}
+
+@media (max-height: 540px) and (orientation: landscape) {
+  .shop-screen .tree-shell { height: calc(100dvh - 18px); padding: 8px; }
+  .shop-screen .tree-head { padding-bottom: 4px; }
+  .shop-screen .tree-title h2 { font-size: 20px; }
+  .shop-screen .tree-wallet b { font-size: 18px; }
+  .shop-tabs { margin-bottom: 4px; }
+  .shop-tabs .meta-tab { min-height: 28px; height: 28px; font-size: 11px; }
+  .shop-screen .tree-hint { font-size: 10.5px; margin-bottom: 4px; }
+  .seed-lanes .seed-card { min-height: 196px; gap: 5px; padding-top: 7px; }
+  .seed-lanes .seed-swatch { height: 62px; }
+  .seed-lanes .seed-swatch img { width: 42px; height: 54px; }
+  .seed-lanes .seed-info b { font-size: 13px; }
+  .seed-lanes .seed-info small { font-size: 10px; -webkit-line-clamp: 1; }
+  .seed-metrics > span { font-size: 9px; padding: 1px 4px; }
+  .seed-metrics b { font-size: 10px; }
+  .tool-lanes .tool-card { min-height: 232px; gap: 5px; padding-top: 8px; }
+  .tool-icon-plate { height: 62px; }
+  .tool-lanes .tool-icon-plate img { width: 40px; height: 40px; }
+  .tool-lanes .tool-card h3 { font-size: 14px; }
+  .tool-lanes .tool-card p { min-height: 34px; font-size: 10px; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .shop-filters { margin-bottom: 4px; }
+  .shop-filters input[type="search"], .shop-filters select { padding: 4px 6px; font-size: 11px; }
+  .shop-filters select { flex-basis: 112px; }
+  .hex-scroll { padding: 6px 8px 8px; }
+  .hex-lane .hex-entry { padding: 7px; gap: 5px; }
+  .hex-lane .hex-entry-icon { height: 34px; }
+  .hex-lane .hex-entry p { font-size: 10px; line-height: 1.4; }
+  .hex-lane-head { padding-bottom: 5px; }
+  .hex-lane-head b { font-size: 13px; }
+}
+
 </style>
+  <link rel="stylesheet" href="code/art-refresh.css" />
 <script>window.__INLINE_ASSETS__={"art/ui/hex-silver.png":"data:image/png;base64,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","art/ui/hex-gold.png":"data:image/png;base64,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","art/ui/hex-prism.png":"data:image/png;base64,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"};function __asset(u){var m=window.__INLINE_ASSETS__||{};return m[u]||u;}</script>
 </head>
 <body>
@@ -4232,17 +4374,17 @@ button * {
     </div>
 
     <nav class="hud-nav" aria-label="功能菜单">
-      <button class="hud-fn meta-hud-btn" type="button" data-panel="seeds" title="种子图鉴 · 结算后可用">
+      <button class="hud-fn meta-hud-btn" type="button" data-panel="seeds" title="种子商店 · 结算后可用">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACv0lEQVR4AeXBT2hTdwDA8e/v9XU+V33T1NjQJiXOmAaqki5sYayUzj+MXQriwYvkIOw07SXgWY8KhU3F4yi57bCLOMaorQcHm8zWoc6Zpyuhf8J7hqTw7LOvNumzP0gghv6Jgx3Ez4d3nqBJXx4IeG6PTk3p3iJZMy9Y0xPo9I593YE0VXDQsja3n5qCNSpNcnt0jp39nFTCRro6osPomNe5c5VDJ49zLm2TmdTJJGy+O5/j9lMTSeUtpBI2mUkd6Vza5s9HO3CBjwYhM6mTStg0UmhSy61Wro7opBI2UmZSZz3DPy9z6xeLGpUN9Gu9HnV+c/8WhdEFr2J14Dt1GEmNF9kRSSKlEjbffD+P+HGGrGkKqgQNjoaPeHPuE77q3ob0cGGJoaiPn8YF98r/8u3uIDdbXuK0vCLU50OavV+irfIB3T4/hwsOI4VngiqVBnPuE04MxEl2udyd1xj+wkXqb9NId3Vw/dci2cfPBGtCfT7vE38bv88bgjVZM88Yb1JoENRi3L0/hZTscqlJdrlI5RWLelMFh82oNBjPTYjhz/Z5V24+Jh7bQ03FcvhnUWdlth0waZbCOn6Yfs5Q1EfFcqhYDhXLQSqvWLwthQb9Wq935uO93DBK1Hu4sMSh3dtpDRU5Gj7i0aQW6vRrvd6nxwWD8SDLisdgPIhwl+nrC5GM+hHuMj3t25mYnWP09OULd+w/kOaM4kU2oFKV9ke8B36VgUg7UvfqKlI4GqAmHA0gdRolLo1eo7Rrka0oVP3V1s3B/RVqwtEAGxmK+mgNFQlqMbJmXrAJhSrlwyIDkb00IxwNIMWdGbai8B/kDJNmKfzPFOrkDJOcYbKZnGEiqa0dNEOlamm6zI2VEvHYHjBMNjKjKFQshzvGNGNlV7AFQZ20P+JN7Vok/0Khc+cq68m/UAhqMcZzE4L3wmvnN/wDs3Kd7gAAAABJRU5ErkJggg==" alt="" />
-        <span>种子</span>
+        <span>种子商店</span>
       </button>
       <button class="hud-fn meta-hud-btn" type="button" data-panel="upgrades" title="升级 · 结算后可用">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABuklEQVR4Ae3Bz2uSYQDA8e/z+rqsLayDTZSiw0LGDnbb0OZhc1qegv6BkVA7R+fK24TYoVuDDfoDdshDh7V2GGbqIfQQ9pIUDHwzhZjxGiJvPCUpyPDXRlGHfT6c+OcEI3p3PyEdkTgtxXsf8OUqghEojMgRidMxtXaFUSmM4NsDt+SQ1NULkj+tsuuXlV2/5AgU/jJBm8fpknQpmTVa3Kqdw0pmDfPgB+o5C27VTi9aWRf8otIWXl4iFIhyHNt7G4QCUTq29zbQVp/RotJWSOSYGCtwXKl0gY50UtIh6OJxuqR9Kkhwwc9RGM0UE2M+6pk8T19t0jAbgjZBDzbVJu8u3mZ81sswRjNFIZFj/2uV8KVTPMl+EnQR9LEZWZPxt48J3pjEfnGFbkYzRUs6KakVd9DKuqAPwRAep0veuvOQXrbWY2hlXTCAwhDh5SV68c1Nc917k2EUBvA4XTIUiNLP+KyXxcsLkgEs9HHNNiPnV+b58vk0LVvrMXYyCV6/fIFeyHJ2cgbf3DRGsYy19P3RvlmN0YPKAGc+VqnX8rypGzgOzqM1dMFvsp7Jk3z/nKy1iAUrJ/5fPwGi8ZLB8Y1NeAAAAABJRU5ErkJggg==" alt="" />
         <span>升级</span>
       </button>
-      <button class="hud-fn meta-hud-btn" type="button" data-panel="hexes" title="海克斯 · 结算后可用">
+      <button class="hud-fn meta-hud-btn" type="button" data-panel="hexes" title="能力构筑 · 结算后可用">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACf0lEQVR4AeXBv2sTYRjA8e+lyelQT3loaSiixYqvUBGtPya71IpYQfQmxUGptyiC0M1NXbr5FwQnEV0yOHRLl4qgqHSJ+jpolCqG6tMaK9Q7y8lBhONomjiKnw//PIcOHNk4FIcHD/D+SA/bH33BffacRytVhw50sY4747fjx1HtxmJwgvjWfjYM97ByehthcT9u/fuN7/UPN2nDoYWjA6Px4ple3o/tQ4yQpVbJzy6w5/4cldqMQwsOGabYH2/eOcbyqUNEvks7apXBqVdsmp+nUptxyHBoOjowGr/2Qn6NH8YLDFlqlfzsAl5gWEujZNn7sMK5gQtMTE86NOVpeu2FrEydRIyQVSiHMAReYFCr9FW7iXyXNC8wvBjp5eX1Mmk5mn5sW0KMkKZWKZRDIt9FjJAQI0S+S6EcolZJEyP8POaSlqMFtUpftZvId1GrJBolyx+R75JQq6wnRwt91W4i3+UPtcpqNIdaRa2SECNkdRX2kZanA2KERKF6hjrLiBE6laNp19Iw61GrfNV3/K0cHVCriBESYgS1SqdytFAfWqZRsiTECGlihESjZBEjpK1Gc6TlaUGMgBEK5ZD60DJiBC8wJNQq+dkFvMDQTo4UtUpW5Lsk1CpqlUI5JOEFhiy1yo4nW0nL0zRiH/Px+lsa44fxAkOaGCGhVol8F0HIapQsG6ef4r5ZJM0h49rxK/E9W6H3ylUi36WdQjnk290H7G64VGozDhkOLZhif1w/KHRdPo8YIUutMjj1CvfZcyZGLzExPemwBoc2TLE/Xrp4ll8jvYgR1Cp91W5Wb09hP39yaMOhA6bYH2/eOcabLS/YtTTMpvl5KrUZh//Cb11o9jQE3AXlAAAAAElFTkSuQmCC" alt="" />
-        <span>海克斯</span>
+        <span>能力构筑</span>
       </button>
       <div class="hud-tools">
         <button class="hud-icon" type="button" id="btn-save" title="保存进度" aria-label="保存进度">
@@ -4321,19 +4463,37 @@ button * {
 
   <div class="drawer-backdrop hidden" id="drawer-backdrop"></div>
 
-  <aside class="drawer hidden" id="drawer-seeds" aria-hidden="true">
-    <header class="drawer-head">
-      <div><span class="eyebrow">苗圃</span><h2>种子图鉴</h2></div>
-      <button class="drawer-close" type="button" data-close aria-label="关闭">✕</button>
-    </header>
-    <nav class="meta-tabs" aria-label="面板切换">
-      <button class="meta-tab active" type="button" data-tab="seeds">种子</button>
-      <button class="meta-tab" type="button" data-tab="upgrades">升级</button>
-      <button class="meta-tab" type="button" data-tab="hexes">海克斯</button>
-    </nav>
-    <p class="drawer-note">种子用于解锁树种。解锁消耗<strong class="coin-text">金币</strong>；金币可在结算市场出售木材获得。</p>
-    <div class="seed-list" id="seed-list"></div>
-  </aside>
+  <section class="upgrade-tree shop-screen hidden" id="drawer-seeds" aria-labelledby="seeds-title">
+    <div class="tree-shell">
+      <header class="tree-head">
+        <div class="tree-title">
+          <span class="eyebrow">苗圃</span>
+          <h2 id="seeds-title">种子商店</h2>
+        </div>
+        <div class="tree-wallet">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />
+          <span>金币</span>
+          <b id="seed-coins">0</b>
+        </div>
+        <button class="pixel-btn tree-close" type="button" data-close>返回</button>
+      </header>
+      <nav class="meta-tabs shop-tabs" aria-label="面板切换">
+        <button class="meta-tab active" type="button" data-tab="seeds">种子商店</button>
+        <button class="meta-tab" type="button" data-tab="upgrades">升级</button>
+        <button class="meta-tab" type="button" data-tab="hexes">能力构筑</button>
+      </nav>
+      <p class="tree-hint">选择下一局要种的树。未解锁树种消耗金币；金币可在结算市场出售木材获得。</p>
+      <div class="tree-scroll shop-scroll">
+        <div class="seed-lanes" id="seed-list"></div>
+      </div>
+      <footer class="tree-legend">
+        <span class="lg can">已选中</span>
+        <span class="lg lock">未解锁</span>
+        <span class="lg max">种子库存</span>
+        <span class="lg scroll">七种树种 · 永久解锁</span>
+      </footer>
+    </div>
+  </section>
 
   <section class="upgrade-tree hidden" id="upgrade-tree" role="dialog" aria-modal="true" aria-labelledby="tree-title">
     <div class="tree-shell">
@@ -4364,38 +4524,53 @@ button * {
     </div>
   </section>
 
-  <aside class="drawer hidden" id="drawer-hexes" aria-hidden="true">
-    <header class="drawer-head">
-      <div><span class="eyebrow">49种森林法则</span><h2>海克斯图鉴</h2></div>
-      <button class="drawer-close" type="button" data-close aria-label="关闭">✕</button>
-    </header>
-    <nav class="meta-tabs" aria-label="面板切换">
-      <button class="meta-tab" type="button" data-tab="seeds">种子</button>
-      <button class="meta-tab" type="button" data-tab="upgrades">升级</button>
-      <button class="meta-tab active" type="button" data-tab="hexes">海克斯</button>
-    </nav>
-    <div class="hex-summary">
-      <span class="hex-count-pill" id="hex-count">0 / 49</span>
-      <span class="wallet-pill"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" /><b id="hex-shop-coins">0</b></span>
+  <section class="upgrade-tree shop-screen hidden" id="drawer-hexes" aria-labelledby="hexes-title">
+    <div class="tree-shell">
+      <header class="tree-head">
+        <div class="tree-title">
+          <span class="eyebrow">49 种森林法则</span>
+          <h2 id="hexes-title">能力构筑</h2>
+        </div>
+        <span class="hex-count-pill" id="hex-count">0 / 49</span>
+        <div class="tree-wallet">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />
+          <span>金币</span>
+          <b id="hex-shop-coins">0</b>
+        </div>
+        <button class="pixel-btn tree-close" type="button" data-close>返回</button>
+      </header>
+      <nav class="meta-tabs shop-tabs" aria-label="面板切换">
+        <button class="meta-tab" type="button" data-tab="seeds">种子商店</button>
+        <button class="meta-tab" type="button" data-tab="upgrades">升级</button>
+        <button class="meta-tab active" type="button" data-tab="hexes">能力构筑</button>
+      </nav>
+      <p class="tree-hint">每局结算三选一，下一局生效。自动能力开局启动；帮手 K 召唤 / L 切换，机甲 R 部署。</p>
+      <div class="hex-filters shop-filters">
+        <label class="sr-only" for="hex-search">搜索词条</label>
+        <input id="hex-search" type="search" placeholder="搜索名称或能力…" />
+        <label class="sr-only" for="hex-family">海克斯流派</label>
+        <select id="hex-family">
+          <option value="">全部流派</option><option>召唤</option><option>飞刃</option>
+          <option>机甲</option><option>元素</option><option>奇遇</option><option>基础</option>
+        </select>
+        <label class="hex-owned-filter"><input id="hex-owned-only" type="checkbox" />只看已获得</label>
+      </div>
+      <div class="tree-scroll shop-scroll hex-scroll">
+        <details class="hex-collection">
+          <summary>已获得词条</summary>
+          <div class="hex-grid" id="hex-grid"></div>
+          <p class="hex-detail" id="hex-detail">重复海克斯可以叠加；打开图鉴卡片可查看上限。</p>
+        </details>
+        <div class="hex-catalogue" id="hex-catalogue"></div>
+      </div>
+      <footer class="tree-legend">
+        <span class="lg can">已获得</span>
+        <span class="lg lock">未获得</span>
+        <span class="lg max">可叠加层数</span>
+        <span class="lg scroll">六种流派 · 49 条法则</span>
+      </footer>
     </div>
-    <p class="drawer-note">每局结算三选一，下一局生效。自动能力开局启动；帮手 K 召唤 / L 切换，机甲 R 部署。</p>
-    <details class="hex-collection">
-      <summary>已获得的蜂巢</summary>
-      <div class="hex-grid" id="hex-grid"></div>
-      <p class="hex-detail" id="hex-detail">重复海克斯可以叠加；打开图鉴卡片可查看上限。</p>
-    </details>
-    <div class="hex-filters">
-      <label class="sr-only" for="hex-search">搜索词条</label>
-      <input id="hex-search" type="search" placeholder="搜索名称或能力…" />
-      <label class="sr-only" for="hex-family">海克斯流派</label>
-      <select id="hex-family">
-        <option value="">全部流派</option><option>召唤</option><option>飞刃</option>
-        <option>机甲</option><option>元素</option><option>奇遇</option><option>基础</option>
-      </select>
-      <label class="hex-owned-filter"><input id="hex-owned-only" type="checkbox" />只看已获得</label>
-    </div>
-    <div class="hex-catalogue" id="hex-catalogue"></div>
-  </aside>
+  </section>
 
   <div class="modal-layer hidden" id="start-modal" role="dialog" aria-modal="true" aria-labelledby="start-title">
     <div class="modal start-modal">
@@ -4403,6 +4578,10 @@ button * {
         <span class="eyebrow">限时伐木</span>
         <h2 id="start-title">30 秒，能砍多少？</h2>
         <p id="start-duration">本局时长 30 秒</p>
+      </div>
+      <div class="start-account-row">
+        <b id="start-account">独立游客账户</b>
+        <span id="start-account-hint">进度保存在当前浏览器 · 回访可继续</span>
       </div>
       <div class="start-panels">
         <div class="start-card">
@@ -4413,7 +4592,7 @@ button * {
         <div class="start-card">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACuUlEQVR4Ae3BQWhTZwDA8f+Xalt9S7pKX9SmOMOeJCqO4EHkbR6cFyleJCcPMhl43GC+0w7DBM/ZoYPeth12tfRQEKToYLSVVnHRGvuei0TUrPresqbR18al6ed7kI4QkupB2A7+frz3nxO8gaFqEk/GyQtD1SQtkpEKetYWdCDowFA1iScZqaBnbUGLn4a/l7mbo/hq0TojcwVBG4I2ZhJhiUfP2sJQNVmL1vEtvAzh2/9Bhdt3tzNVzYmZRFiOFUP4Mk5e0ELQYiYRlnj0rC0MVZPrR3s5PTxIPOZiWgobSg/WGL1aYvL+HYEntmtQ4lHL/fimqjmBp4sWH9Z3pxZe9KArO1LrR3v59ps+BgZqLB8KEzzQTfBAN0P1MntidQ5+3E/QWU/NFsvp88PHUsa5AU6cDLG0+JzZYjmNJ0CLZKSCrxatc3p4ENNS8PXN2/TN2/TN2zQ7/mmUE3s/l+O/ZYnHXOIxl2ZdtPjxmZu+sfJ3Wj88lNq/L0g85tLJX6VuDuurmDee8OrVPsYnl6kuuJRX1pgtltN4ArwD80urXHt0XZzZ+wVP5/6h2RYavj4SlVsLXfiyyh7A5m1t2boTeMaXVy4IfA7/CtAQVbdRPRXkrqqwIR5zMS2FzZiWwmYCNLl4djvffbWThPuYm5OS6Yke2lk+FMa0FOIxl/Erf/KJ42KomqSNAA0FZ5XpiR58tWidqWpO/DpdYINpKZiWgmkpLF52SSzmmJ7o4d7DLjYToGFkriCWrFNc+uE5Cy9D+EbmCuLyz3+Q/mWFZqUHa1z8vZ/RqyUm798RbELQwlA1SUPGyQs8n/UelLfWHuL7aGAHQ71xEu5jMk5eGKom8WScvKANQQeGqslkpMJYMUQyUsGnZ21Bg6FqkoaMkxd0IHiDmURY0mSsGCIZqdBMz9qC9/63XgM8HQpEDBX87QAAAABJRU5ErkJggg==" alt="" />
           <b>结算</b>
-          <p>木材可出售换金币；金币用于升级、海克斯与工具。</p>
+          <p>木材可出售换金币；金币用于升级、能力构筑与工具商店。</p>
         </div>
       </div>
       <div class="start-summary">
@@ -4500,9 +4679,9 @@ button * {
 
       <div class="result-actions">
         <div class="meta-actions">
-          <button class="pixel-btn" type="button" id="btn-result-seeds"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACv0lEQVR4AeXBT2hTdwDA8e/v9XU+V33T1NjQJiXOmAaqki5sYayUzj+MXQriwYvkIOw07SXgWY8KhU3F4yi57bCLOMaorQcHm8zWoc6Zpyuhf8J7hqTw7LOvNumzP0gghv6Jgx3Ez4d3nqBJXx4IeG6PTk3p3iJZMy9Y0xPo9I593YE0VXDQsja3n5qCNSpNcnt0jp39nFTCRro6osPomNe5c5VDJ49zLm2TmdTJJGy+O5/j9lMTSeUtpBI2mUkd6Vza5s9HO3CBjwYhM6mTStg0UmhSy61Wro7opBI2UmZSZz3DPy9z6xeLGpUN9Gu9HnV+c/8WhdEFr2J14Dt1GEmNF9kRSSKlEjbffD+P+HGGrGkKqgQNjoaPeHPuE77q3ob0cGGJoaiPn8YF98r/8u3uIDdbXuK0vCLU50OavV+irfIB3T4/hwsOI4VngiqVBnPuE04MxEl2udyd1xj+wkXqb9NId3Vw/dci2cfPBGtCfT7vE38bv88bgjVZM88Yb1JoENRi3L0/hZTscqlJdrlI5RWLelMFh82oNBjPTYjhz/Z5V24+Jh7bQ03FcvhnUWdlth0waZbCOn6Yfs5Q1EfFcqhYDhXLQSqvWLwthQb9Wq935uO93DBK1Hu4sMSh3dtpDRU5Gj7i0aQW6vRrvd6nxwWD8SDLisdgPIhwl+nrC5GM+hHuMj3t25mYnWP09OULd+w/kOaM4kU2oFKV9ke8B36VgUg7UvfqKlI4GqAmHA0gdRolLo1eo7Rrka0oVP3V1s3B/RVqwtEAGxmK+mgNFQlqMbJmXrAJhSrlwyIDkb00IxwNIMWdGbai8B/kDJNmKfzPFOrkDJOcYbKZnGEiqa0dNEOlamm6zI2VEvHYHjBMNjKjKFQshzvGNGNlV7AFQZ20P+JN7Vok/0Khc+cq68m/UAhqMcZzE4L3wmvnN/wDs3Kd7gAAAABJRU5ErkJggg==" alt="" />种子</button>
-          <button class="pixel-btn" type="button" id="btn-result-tools"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACuUlEQVR4Ae3Bz2+TZQDA8e/bp617O8dgLzVvtnagIi+gyUyIsoxggkYXOWBM44+LVw8c4MCNC89zw0QPXHYgMfoHsIPH6RhLhHYw7UyIGWRbW94OB7xrR7P2bQsvLW3SJgth0GQmeuDz4aX/nMZznBo9UR8Se/gu+T2ff/Au7hthmrS5bs5PjGl0QLAJy+yvOz0RFlYmGP7qMEc/O8m9FZ2giBKMmNy/lZS54rriBfxsYrAvzHsfHqaQvcGrwRHiM/O0zV4co1M+NlFzDWo3f+HTL87TVnwYZ/yCopzyuHX3H40O+HkGy+yvv/11FF9whPjMPG0TP/9GpGsflypTGh3SaPn4wFC90DdEYXGS2LdnGRneT3xmnrbZi2O88+Zj/rq5iu/RAS5lpjQ6IGj58uhB+eNP58jVBmnKLq/SNn5B0at3Ex2IcnBblcVSlf71ndL2HMULCFqcXEla748SjYTJLq/SNjl1lW2pNby1GituCsvQeWtHDb2nTCA3IG3PUTyHoCVXXFfOXFIOf3KMb44P8ftsmqZUOksiNanZnqNiwpTTpQJ6uJvdIT/Cn6Gn15CZfFGxCcEGKeeessevSzv4GmdOfMRj0YVY+pUrfy8oGhJuXsWEKeeKD7AMnZ292wnWIBTqkjFhyoSbVzxF8BTbc1T9WlpmUgmWKwbuUpXAHVfanqNoSLh5FROmnC4VsAydHd0BLENnulQg4u6StucoNhA8g+056tD9uoxf/pOV27c51FMl4eYVLQk3r2LClNOlApah02QZOsKfoTd0RA5UQtL2HEWDxhacDu+pJ7cXOb63j7a0U+bGWpnLC3c1GnxswQ/OovYoa5B2yjTt3mvyelhnI8EW2Z6jQqEuGayBVqli+3wk0xVyxXVFg+BfkMkXVSA3IDNagD+WcowOvsK1Ow8UL/0vPAF+aBsgXjpICwAAAABJRU5ErkJggg==" alt="" />工具</button>
-          <button class="pixel-btn" type="button" id="btn-result-hexes"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACf0lEQVR4AeXBv2sTYRjA8e+lyelQT3loaSiixYqvUBGtPya71IpYQfQmxUGptyiC0M1NXbr5FwQnEV0yOHRLl4qgqHSJ+jpolCqG6tMaK9Q7y8lBhONomjiKnw//PIcOHNk4FIcHD/D+SA/bH33BffacRytVhw50sY4747fjx1HtxmJwgvjWfjYM97ByehthcT9u/fuN7/UPN2nDoYWjA6Px4ple3o/tQ4yQpVbJzy6w5/4cldqMQwsOGabYH2/eOcbyqUNEvks7apXBqVdsmp+nUptxyHBoOjowGr/2Qn6NH8YLDFlqlfzsAl5gWEujZNn7sMK5gQtMTE86NOVpeu2FrEydRIyQVSiHMAReYFCr9FW7iXyXNC8wvBjp5eX1Mmk5mn5sW0KMkKZWKZRDIt9FjJAQI0S+S6EcolZJEyP8POaSlqMFtUpftZvId1GrJBolyx+R75JQq6wnRwt91W4i3+UPtcpqNIdaRa2SECNkdRX2kZanA2KERKF6hjrLiBE6laNp19Iw61GrfNV3/K0cHVCriBESYgS1SqdytFAfWqZRsiTECGlihESjZBEjpK1Gc6TlaUGMgBEK5ZD60DJiBC8wJNQq+dkFvMDQTo4UtUpW5Lsk1CpqlUI5JOEFhiy1yo4nW0nL0zRiH/Px+lsa44fxAkOaGCGhVol8F0HIapQsG6ef4r5ZJM0h49rxK/E9W6H3ylUi36WdQjnk290H7G64VGozDhkOLZhif1w/KHRdPo8YIUutMjj1CvfZcyZGLzExPemwBoc2TLE/Xrp4ll8jvYgR1Cp91W5Wb09hP39yaMOhA6bYH2/eOcabLS/YtTTMpvl5KrUZh//Cb11o9jQE3AXlAAAAAElFTkSuQmCC" alt="" />已获词条</button>
+          <button class="pixel-btn" type="button" id="btn-result-seeds"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACv0lEQVR4AeXBT2hTdwDA8e/v9XU+V33T1NjQJiXOmAaqki5sYayUzj+MXQriwYvkIOw07SXgWY8KhU3F4yi57bCLOMaorQcHm8zWoc6Zpyuhf8J7hqTw7LOvNumzP0gghv6Jgx3Ez4d3nqBJXx4IeG6PTk3p3iJZMy9Y0xPo9I593YE0VXDQsja3n5qCNSpNcnt0jp39nFTCRro6osPomNe5c5VDJ49zLm2TmdTJJGy+O5/j9lMTSeUtpBI2mUkd6Vza5s9HO3CBjwYhM6mTStg0UmhSy61Wro7opBI2UmZSZz3DPy9z6xeLGpUN9Gu9HnV+c/8WhdEFr2J14Dt1GEmNF9kRSSKlEjbffD+P+HGGrGkKqgQNjoaPeHPuE77q3ob0cGGJoaiPn8YF98r/8u3uIDdbXuK0vCLU50OavV+irfIB3T4/hwsOI4VngiqVBnPuE04MxEl2udyd1xj+wkXqb9NId3Vw/dci2cfPBGtCfT7vE38bv88bgjVZM88Yb1JoENRi3L0/hZTscqlJdrlI5RWLelMFh82oNBjPTYjhz/Z5V24+Jh7bQ03FcvhnUWdlth0waZbCOn6Yfs5Q1EfFcqhYDhXLQSqvWLwthQb9Wq935uO93DBK1Hu4sMSh3dtpDRU5Gj7i0aQW6vRrvd6nxwWD8SDLisdgPIhwl+nrC5GM+hHuMj3t25mYnWP09OULd+w/kOaM4kU2oFKV9ke8B36VgUg7UvfqKlI4GqAmHA0gdRolLo1eo7Rrka0oVP3V1s3B/RVqwtEAGxmK+mgNFQlqMbJmXrAJhSrlwyIDkb00IxwNIMWdGbai8B/kDJNmKfzPFOrkDJOcYbKZnGEiqa0dNEOlamm6zI2VEvHYHjBMNjKjKFQshzvGNGNlV7AFQZ20P+JN7Vok/0Khc+cq68m/UAhqMcZzE4L3wmvnN/wDs3Kd7gAAAABJRU5ErkJggg==" alt="" />种子商店</button>
+          <button class="pixel-btn" type="button" id="btn-result-tools"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACuUlEQVR4Ae3Bz2+TZQDA8e/bp617O8dgLzVvtnagIi+gyUyIsoxggkYXOWBM44+LVw8c4MCNC89zw0QPXHYgMfoHsIPH6RhLhHYw7UyIGWRbW94OB7xrR7P2bQsvLW3SJgth0GQmeuDz4aX/nMZznBo9UR8Se/gu+T2ff/Au7hthmrS5bs5PjGl0QLAJy+yvOz0RFlYmGP7qMEc/O8m9FZ2giBKMmNy/lZS54rriBfxsYrAvzHsfHqaQvcGrwRHiM/O0zV4co1M+NlFzDWo3f+HTL87TVnwYZ/yCopzyuHX3H40O+HkGy+yvv/11FF9whPjMPG0TP/9GpGsflypTGh3SaPn4wFC90DdEYXGS2LdnGRneT3xmnrbZi2O88+Zj/rq5iu/RAS5lpjQ6IGj58uhB+eNP58jVBmnKLq/SNn5B0at3Ex2IcnBblcVSlf71ndL2HMULCFqcXEla748SjYTJLq/SNjl1lW2pNby1GituCsvQeWtHDb2nTCA3IG3PUTyHoCVXXFfOXFIOf3KMb44P8ftsmqZUOksiNanZnqNiwpTTpQJ6uJvdIT/Cn6Gn15CZfFGxCcEGKeeessevSzv4GmdOfMRj0YVY+pUrfy8oGhJuXsWEKeeKD7AMnZ292wnWIBTqkjFhyoSbVzxF8BTbc1T9WlpmUgmWKwbuUpXAHVfanqNoSLh5FROmnC4VsAydHd0BLENnulQg4u6StucoNhA8g+056tD9uoxf/pOV27c51FMl4eYVLQk3r2LClNOlApah02QZOsKfoTd0RA5UQtL2HEWDxhacDu+pJ7cXOb63j7a0U+bGWpnLC3c1GnxswQ/OovYoa5B2yjTt3mvyelhnI8EW2Z6jQqEuGayBVqli+3wk0xVyxXVFg+BfkMkXVSA3IDNagD+WcowOvsK1Ow8UL/0vPAF+aBsgXjpICwAAAABJRU5ErkJggg==" alt="" />工具商店</button>
+          <button class="pixel-btn" type="button" id="btn-result-hexes"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACf0lEQVR4AeXBv2sTYRjA8e+lyelQT3loaSiixYqvUBGtPya71IpYQfQmxUGptyiC0M1NXbr5FwQnEV0yOHRLl4qgqHSJ+jpolCqG6tMaK9Q7y8lBhONomjiKnw//PIcOHNk4FIcHD/D+SA/bH33BffacRytVhw50sY4747fjx1HtxmJwgvjWfjYM97ByehthcT9u/fuN7/UPN2nDoYWjA6Px4ple3o/tQ4yQpVbJzy6w5/4cldqMQwsOGabYH2/eOcbyqUNEvks7apXBqVdsmp+nUptxyHBoOjowGr/2Qn6NH8YLDFlqlfzsAl5gWEujZNn7sMK5gQtMTE86NOVpeu2FrEydRIyQVSiHMAReYFCr9FW7iXyXNC8wvBjp5eX1Mmk5mn5sW0KMkKZWKZRDIt9FjJAQI0S+S6EcolZJEyP8POaSlqMFtUpftZvId1GrJBolyx+R75JQq6wnRwt91W4i3+UPtcpqNIdaRa2SECNkdRX2kZanA2KERKF6hjrLiBE6laNp19Iw61GrfNV3/K0cHVCriBESYgS1SqdytFAfWqZRsiTECGlihESjZBEjpK1Gc6TlaUGMgBEK5ZD60DJiBC8wJNQq+dkFvMDQTo4UtUpW5Lsk1CpqlUI5JOEFhiy1yo4nW0nL0zRiH/Px+lsa44fxAkOaGCGhVol8F0HIapQsG6ef4r5ZJM0h49rxK/E9W6H3ylUi36WdQjnk290H7G64VGozDhkOLZhif1w/KHRdPo8YIUutMjj1CvfZcyZGLzExPemwBoc2TLE/Xrp4ll8jvYgR1Cp91W5Wb09hP39yaMOhA6bYH2/eOcabLS/YtTTMpvl5KrUZh//Cb11o9jQE3AXlAAAAAElFTkSuQmCC" alt="" />能力构筑</button>
         </div>
         <div class="run-next-actions">
           <button class="pixel-btn next-run-btn" type="button" id="btn-next-run" disabled>下一局</button>
@@ -4532,24 +4711,33 @@ button * {
     </div>
   </div>
 
-  <div class="modal-layer hidden" id="tool-modal" role="dialog" aria-modal="true" aria-labelledby="tool-title">
-    <div class="modal tool-modal">
-      <div class="modal-head">
-        <span class="eyebrow">工坊</span>
-        <h2 id="tool-title">伐木工具商店</h2>
-        <p>金币永久解锁工具，可装备一件。工具影响砍伐速度、范围和特效。</p>
+  <section class="upgrade-tree shop-screen hidden" id="tool-modal" role="dialog" aria-modal="true" aria-labelledby="tool-title">
+    <div class="tree-shell">
+      <header class="tree-head">
+        <div class="tree-title">
+          <span class="eyebrow">工坊</span>
+          <h2 id="tool-title">工具商店</h2>
+        </div>
+        <div class="tool-equipped-pill">已装备 <b id="tool-equipped">旧斧</b></div>
+        <div class="tree-wallet">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />
+          <span>金币</span>
+          <b id="tool-coins">0</b>
+        </div>
+        <button class="pixel-btn tree-close" type="button" id="btn-tool-back">返回</button>
+      </header>
+      <p class="tree-hint">金币永久解锁工具，可装备一件。工具影响砍伐速度、范围和特效；首件工具约 1 局卖木材可买。</p>
+      <div class="tree-scroll shop-scroll">
+        <div class="tool-lanes" id="tool-list"></div>
       </div>
-      <div class="tool-wallet">
-        <span>当前金币 <b id="tool-coins">0</b></span>
-        <span>已装备 <b id="tool-equipped">旧斧</b></span>
-      </div>
-      <div class="tool-list" id="tool-list"></div>
-      <div class="modal-actions">
-        <button class="pixel-btn" type="button" id="btn-tool-back">返回结算</button>
-      </div>
-      <p class="modal-hint">首件工具约 1 局卖木材可买；顶级工具是长期目标。升级、海克斯和工具都花金币，按需取舍。</p>
+      <footer class="tree-legend">
+        <span class="lg can">已装备</span>
+        <span class="lg lock">未拥有</span>
+        <span class="lg max">已拥有</span>
+        <span class="lg scroll">五档工具 · 永久解锁</span>
+      </footer>
     </div>
-  </div>
+  </section>
 
   <div class="modal-layer hidden" id="offline-modal" role="dialog" aria-modal="true" aria-labelledby="offline-title">
     <div class="modal offline-modal">
@@ -4578,7 +4766,7 @@ button * {
       <div class="modal-head">
         <span class="eyebrow danger-text">危险操作</span>
         <h2 id="reset-title">重置整片森林？</h2>
-        <p>金币、木材、种子、升级、海克斯词条和当前对局都会清空，无法恢复。</p>
+        <p>当前游客的金币、木材、种子、升级、海克斯词条和对局都会清空，无法恢复。</p>
       </div>
       <div class="modal-actions">
         <button class="pixel-btn" type="button" id="btn-reset-cancel">再想想</button>
@@ -5415,13 +5603,22 @@ function renderHexCatalogue() {
   const search = $id('hex-search').value.trim();
   const list = HEXES.filter(h => (!family || (h.family || '基础') === family)
     && (!ownedOnly || state.hexes[h.id]) && (!search || `${h.name}${h.desc}`.includes(search)));
-  container.innerHTML = list.map(h => {
-    const count = state.hexes[h.id] || 0;
-    return `<article class="hex-entry ${count ? 'is-owned' : ''}" data-rarity="${h.rarity}">
-      <span class="hex-entry-icon">${h.icon}</span><div><header><b>${h.name}</b><span>${count ? '×' + count : '未获得'}</span></header>
-      <small>${h.family || '基础'} · ${RARITIES[h.rarity].name} · ${hexPrice(h)}金币</small>
-      <p>${h.desc}</p><footer>${h.stack || '重复选择可叠加数值加成。'}</footer></div></article>`;
-  }).join('') || '<p class="empty">没有匹配的词条。</p>';
+  const families = family ? [family] : ['召唤', '飞刃', '机甲', '元素', '奇遇', '基础'];
+  const groups = families
+    .map(name => ({ name, items: list.filter(h => (h.family || '基础') === name) }))
+    .filter(group => group.items.length);
+  container.classList.toggle('is-filtered', Boolean(family));
+  container.innerHTML = groups.map(group => `
+    <section class="hex-lane" data-family="${group.name}">
+      <header class="hex-lane-head"><b>${group.name}</b><span>${group.items.length} 条</span></header>
+      <div class="hex-lane-cards">${group.items.map(h => {
+        const count = state.hexes[h.id] || 0;
+        return `<article class="hex-entry ${count ? 'is-owned' : ''}" data-rarity="${h.rarity}" title="${h.desc} ${h.stack || ''}">
+          <span class="hex-entry-icon">${h.icon}</span><div><header><b>${h.name}</b><span>${count ? '×' + count : '未获得'}</span></header>
+          <small>${h.family || '基础'} · ${RARITIES[h.rarity].name} · ${hexPrice(h)}金币</small>
+          <p>${h.desc}</p><footer>${h.stack || '重复选择可叠加数值加成。'}</footer></div></article>`;
+      }).join('')}</div>
+    </section>`).join('') || '<p class="empty">没有匹配的词条。</p>';
 }
 
 </script>
@@ -5443,10 +5640,42 @@ const CHOP_RANGE = 26;
 const SWING_BASE = 0.58;
 const SWING_FOLLOW = 0.2;
 const BASE_MOVE_SPEED = 66;
-const SAVE_KEY = 'timber-epoch-save-v6';
-const SAVE_KEY_PREFIX = 'timber-epoch-save-';
+const ACCOUNT_KEY = 'timber-epoch-account-v1';
+const ACCOUNT = loadGuestAccount();
+const SAVE_KEY = `timber-epoch-save-v6:${ACCOUNT.id}`;
 const OFFLINE_CAP = 3 * 3600;
 const OFFLINE_BASE_RATIO = 0.06;
+
+/* ---------- 独立游客账户 ---------- */
+
+function createGuestId() {
+  const bytes = new Uint8Array(16);
+  if (globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') {
+    globalThis.crypto.getRandomValues(bytes);
+  } else {
+    for (let i = 0; i < bytes.length; i += 1) bytes[i] = Math.floor(Math.random() * 256);
+  }
+  return `guest-${Array.from(bytes, (value) => value.toString(16).padStart(2, '0')).join('')}`;
+}
+
+function loadGuestAccount() {
+  try {
+    const raw = localStorage.getItem(ACCOUNT_KEY);
+    const saved = raw ? JSON.parse(raw) : null;
+    if (saved && saved.version === 1 && /^guest-[0-9a-f]{32}$/.test(saved.id)) {
+      return { id: saved.id, persistent: true };
+    }
+  } catch (err) { /* 无效身份或本地存储不可用，创建新游客 */ }
+
+  const account = { id: createGuestId(), persistent: false };
+  try {
+    localStorage.setItem(ACCOUNT_KEY, JSON.stringify({
+      version: 1, id: account.id, createdAt: Date.now(),
+    }));
+    account.persistent = true;
+  } catch (err) { /* 临时游客仍可从零开始游戏 */ }
+  return account;
+}
 
 /* ---------- 树种 ---------- */
 
@@ -5954,7 +6183,21 @@ function toast(message, gold) {
 function saveLabel() {
   const now = new Date();
   const el = document.getElementById('save-state');
-  if (el) el.textContent = `自动存档 · ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  if (el) el.textContent = ACCOUNT.persistent
+    ? `自动存档 · ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+    : '临时账户 · 进度无法保留';
+}
+
+function refreshAccountUI() {
+  const label = $id('start-account');
+  if (label) {
+    label.textContent = `游客 ${ACCOUNT.id.slice(-8).toUpperCase()}`;
+    label.title = ACCOUNT.id;
+  }
+  const hint = $id('start-account-hint');
+  if (hint) hint.textContent = ACCOUNT.persistent
+    ? '进度保存在当前浏览器 · 回访可继续'
+    : '临时账户 · 本地存储不可用，关闭后进度不保留';
 }
 
 /* ---------- 数值汇总 ---------- */
@@ -7177,7 +7420,7 @@ function fellTree(tree, chained, secondary = false) {
   if (!firstChopDone) {
     firstChopDone = true;
     toast('砍倒了第一棵树！木材会自动拾取，结算时可出售换金币。', true);
-    document.getElementById('hud-hint').textContent = '木材只在结算市场出售换金币 · 金币用于升级、海克斯与工具';
+    document.getElementById('hud-hint').textContent = '木材只在结算市场出售换金币 · 金币用于升级、能力构筑与工具商店';
   }
 
   if (!chained) {
@@ -7235,7 +7478,7 @@ function collectItem(item) {
     floats.push({ x: item.x, y: item.y - 12, text: `+${item.amount} ${seed ? seed.name : ''}种子`, color: '#bdeca5', life: 1, maxLife: 1 });
     if (!firstSeedDone) {
       firstSeedDone = true;
-      toast('获得种子！结算后可打开种子图鉴。', true);
+      toast('获得种子！结算后可打开种子商店。', true);
     }
   }
   spawnBurst(item.x, item.y - 2, item.type === 'coin' ? ['#ffe08a', '#f4c95d'] : ['#c9eaa8', '#e5d2a2'], 3, 14);
@@ -7599,14 +7842,14 @@ function renderToolShop() {
       action = `<button class="pixel-btn" type="button" disabled>缺 ${fmt(tool.price - coins)} 金币</button>`;
     }
     return `
-      <div class="tool-card${owned ? ' owned' : ''}${equipped ? ' equipped' : ''}">
-        <img src="${tool.icon}" alt="" />
+      <article class="tool-card shop-card${owned ? ' owned' : ''}${equipped ? ' equipped' : ''}">
+        <span class="tool-icon-plate"><img src="${tool.icon}" alt="" /></span>
         <h3>${tool.name}</h3>
         <p>${tool.desc}</p>
         <span class="tool-stat">砍伐 ×${tool.chop.toFixed(2)} · 范围 +${tool.range}</span>
         <span class="tool-price"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />${fmt(tool.price)}</span>
-        ${action}
-      </div>`;
+        <span class="tool-action">${action}</span>
+      </article>`;
   }).join('');
 }
 
@@ -8389,19 +8632,8 @@ function sanitizeState(data) {
   return out;
 }
 
-function purgeLegacySaves() {
-  try {
-    const keys = [];
-    for (let i = 0; i < localStorage.length; i += 1) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith(SAVE_KEY_PREFIX) && key !== SAVE_KEY) keys.push(key);
-    }
-    keys.forEach((key) => localStorage.removeItem(key));
-  } catch (err) { /* 忽略存储异常 */ }
-}
-
 function loadGame() {
-  purgeLegacySaves();
+  if (!ACCOUNT.persistent) return false;
   let raw = null;
   try {
     raw = localStorage.getItem(SAVE_KEY);
@@ -8415,8 +8647,8 @@ function loadGame() {
   } catch (err) {
     return false;
   }
-  // 新档 v6：旧版本存档直接丢弃，不做迁移
-  if (!data || typeof data !== 'object' || Number(data.version) < 6) {
+  // 只读取当前游客名下的存档；不继承旧公共存档或其他游客的进度。
+  if (!data || typeof data !== 'object' || Number(data.version) < 6 || data.accountId !== ACCOUNT.id) {
     try { localStorage.removeItem(SAVE_KEY); } catch (err) { /* 忽略存储异常 */ }
     return false;
   }
@@ -8429,8 +8661,14 @@ function loadGame() {
 
 function saveGame(manual) {
   state.lastAt = Date.now();
+  if (!ACCOUNT.persistent) {
+    saveLabel();
+    if (manual) toast('临时账户：本地存储不可用，进度无法保留');
+    return;
+  }
   const payload = {
     version: 6,
+    accountId: ACCOUNT.id,
     coins: Math.floor(state.coins),
     wood: Math.floor(state.wood),
     seeds: state.seeds,
@@ -8471,7 +8709,10 @@ function saveGame(manual) {
     saveLabel();
     if (manual) toast('进度已保存', true);
   } catch (err) {
-    if (manual) toast('存档失败：浏览器禁止了本地存储');
+    ACCOUNT.persistent = false;
+    saveLabel();
+    refreshAccountUI();
+    if (manual) toast('进度暂未保存：本地存储不可用');
   }
 }
 
@@ -8848,6 +9089,7 @@ function refreshSkillDock() {
 
 function refreshStart() {
   if (RUN.phase !== 'ready') return;
+  refreshAccountUI();
   RUN.duration = getRunDuration();
   RUN.timeLeft = RUN.duration;
   const durationEl = $id('start-duration');
@@ -9044,7 +9286,7 @@ function refreshResult() {
     if (hint) hint.textContent = '请先选择或跳过本局海克斯，之后才能开始下一局。金币不足时可以先卖木材或跳过。';
   }
   const feedback = $id('market-feedback');
-  if (feedback && !feedback.dataset.touched) feedback.textContent = '木材可整批出售换取金币；金币用于升级、海克斯与工具。';
+  if (feedback && !feedback.dataset.touched) feedback.textContent = '木材可整批出售换取金币；金币用于升级、能力构筑与工具商店。';
 }
 
 function sellWood(rawAmount) {
@@ -9083,24 +9325,33 @@ function openMetaFromResult(name) {
 
 function renderSeedPanel() {
   const host = $id('seed-list');
+  const coins = Math.floor(state.coins);
+  const coinEl = $id('seed-coins');
+  if (coinEl) coinEl.textContent = fmt(coins);
   host.innerHTML = SEED_ORDER.map((id) => {
     const seed = SEEDS[id];
     const locked = !state.unlocked[id];
     const selected = state.selectedSeed === id;
     const count = state.seeds[id] || 0;
+    const affordable = coins >= seed.unlock;
     const side = locked
-      ? `<span class="seed-price"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />${fmt(seed.unlock)}</span><span class="seed-selected-tag">金币解锁</span>`
+      ? `<span class="seed-price"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAABcUlEQVR4Ae3BTUvbAACA4TcxumCRalaKCNZOhAREm4uCU4pVT4P9BH+BlzEQvLmCpx08+QfEg3gQBD15EUR2mqO1WBo/UCrU0PpBsWUVs2YGEihFWo8efB7evT0Cr6B299ilYD8r023UWljPYJg5gRoCTUyHp2wtds+3n2H8qTy1MoaPxeUjnq4+clA5Fngm0sTIqMzibDv+VJ7iUBBFT6LoSRyaWib+fZjW3ls8Iq4JedCmjizJ9peYhUPRk/hTee4SEX5tfCZj+HBoahldC+CRcP22zmnkLhFhaXeA2OMVy75DHJuqhiNUreKRcPUFFAwzRyOnWoF98RoIEk2PAmfUk3AZZk6gTl9AodZqqEh8TWams4vxr2d4Lgp/8bTQwG3pId5RqP6IznTgmYy0ElL/4cnupJnbuseqWnGeiTTx56idpYUcL8nupJnf/kDFqgi4BF5BlmR77FMnuhYgOhDk8sQkK4okMjfsnZoC7962/+7xcqczfF8QAAAAAElFTkSuQmCC" alt="" />${fmt(seed.unlock)}</span><span class="seed-selected-tag">${affordable ? '金币解锁' : '金币不足'}</span>`
       : `<span class="seed-count">×${count}</span><span class="seed-selected-tag">${selected ? '已选中' : '点击选择'}</span>`;
     const iconSrc = ASSET_MANIFEST && ASSET_MANIFEST.trees ? ASSET_MANIFEST.trees[id] : null;
     const swatch = iconSrc ? `<img src="${iconSrc}" alt="" />` : seedIconSVG(seed);
     return `
-      <button class="seed-card${selected ? ' selected' : ''}${locked ? ' locked' : ''}" type="button" data-seed="${id}" title="${seed.desc}">
+      <button class="seed-card shop-card${selected ? ' selected' : ''}${locked ? ' locked' : ''}${locked && !affordable ? ' is-poor' : ''}" type="button" data-seed="${id}" title="${seed.desc}">
         <span class="seed-swatch">${swatch}</span>
         <span class="seed-info">
-          <b>${seed.name}${locked ? ' · 未解锁' : ''}</b>
-          <small>${seed.hp} 斧 · 重生 ${seed.regrow}s · 木材 ${seed.wood}</small>
+          <b>${seed.name}</b>
+          <small>${seed.desc}</small>
         </span>
-        <span class="seed-side">${side}</span>
+        <span class="seed-metrics">
+          <span><b>${seed.hp}</b> 斧</span>
+          <span><b>${seed.regrow}s</b> 重生</span>
+          <span><b>${seed.wood}</b> 木材</span>
+        </span>
+        <span class="seed-foot">${side}</span>
       </button>`;
   }).join('');
 }
@@ -9346,7 +9597,7 @@ function openDrawer(name) {
   if (!activeDrawer && document.querySelector('.modal-layer:not(.hidden)')) return;
   activeDrawer = name;
   clearInput();
-  document.querySelectorAll('.drawer').forEach((el) => el.classList.add('hidden'));
+  document.querySelectorAll('.drawer, .shop-screen').forEach((el) => el.classList.add('hidden'));
   document.querySelectorAll('.meta-hud-btn').forEach((btn) => btn.classList.remove('active'));
   const drawer = $id('drawer-' + name);
   if (drawer) drawer.classList.remove('hidden');
@@ -9365,7 +9616,7 @@ function openUpgradeTree() {
   }
   clearInput();
   activeDrawer = null;
-  document.querySelectorAll('.drawer').forEach((el) => el.classList.add('hidden'));
+  document.querySelectorAll('.drawer, .shop-screen').forEach((el) => el.classList.add('hidden'));
   $id('drawer-backdrop').classList.add('hidden');
   document.querySelectorAll('.meta-hud-btn').forEach((btn) => btn.classList.remove('active'));
   const btn = document.querySelector('.meta-hud-btn[data-panel="upgrades"]');
@@ -9394,7 +9645,7 @@ function closeUpgradeTree() {
 function closeDrawer() {
   activeDrawer = null;
   $id('drawer-backdrop').classList.add('hidden');
-  document.querySelectorAll('.drawer').forEach((el) => el.classList.add('hidden'));
+  document.querySelectorAll('.drawer, .shop-screen').forEach((el) => el.classList.add('hidden'));
   document.querySelectorAll('.meta-hud-btn').forEach((btn) => btn.classList.remove('active'));
   updatePlantPrompt();
   if (RUN.phase === 'ended' && resultHiddenForPanel) {
@@ -9416,7 +9667,6 @@ function resetGame() {
   try {
     localStorage.removeItem(SAVE_KEY);
   } catch (err) { /* 忽略存储异常 */ }
-  purgeLegacySaves();
   offlineInfo = null;
   RUN.phase = 'ready';
   resultHiddenForPanel = false;
@@ -9506,6 +9756,15 @@ function onKeyDown(event) {
     if (key === 'escape') closeUpgradeTree();
     return;
   }
+  const shop = document.querySelector('.shop-screen:not(.hidden)');
+  if (shop) {
+    if (key === 'escape') {
+      event.preventDefault();
+      if (shop.id === 'tool-modal') closeToolShop();
+      else closeDrawer();
+    }
+    return;
+  }
   const modal = document.querySelector('.modal-layer:not(.hidden)');
 
   if (modal) {
@@ -9513,7 +9772,6 @@ function onKeyDown(event) {
       if (modal.id === 'reset-modal') closeResetModal();
       else if (modal.id === 'offline-modal') closeOffline();
       else if (modal.id === 'hex-modal' && hexOpen) closeHexModal();
-      else if (modal.id === 'tool-modal') closeToolShop();
     }
     return;
   }
@@ -9662,6 +9920,8 @@ function bindEvents() {
 
   const grid = $id('hex-grid');
   ['hex-family', 'hex-search', 'hex-owned-only'].forEach(id => $id(id).addEventListener('input', renderHexCatalogue));
+  const hexCollection = document.querySelector('.hex-collection');
+  if (hexCollection) hexCollection.addEventListener('toggle', () => { if (hexCollection.open) renderHexPanel(); });
   grid.addEventListener('mouseover', (event) => {
     const cell = event.target.closest('.hex-cell[data-hex]');
     if (cell) showHexDetail(cell.dataset.hex);
@@ -9894,7 +10154,7 @@ async function init() {
   updatePlantPrompt();
   refreshSkillDock();
   updateMetaLockUI();
-  if (loaded) saveLabel();
+  if (loaded || !ACCOUNT.persistent) saveLabel();
 
   render(performance.now() / 1000);
   const loading = document.getElementById('loading-screen');
@@ -9923,5 +10183,7 @@ init().catch((err) => {
 });
 
 </script>
+  <script src="data:application/octet-stream;base64,Lyog5LyQ5pyo57qq5YWD77yaMzLDlzMyIOaViOaenOWbvuagh+S4juWDj+e0oOaUtui0reWVhuOAguaXoOe9kee7nOi1hOa6kO+8jGZpbGU6Ly8g5Y+v6L+Q6KGM44CCICovCigoKSA9PiB7CiAgJ3VzZSBzdHJpY3QnOwogIGNvbnN0IFAgPSB7CiAgICBheGU6ICc8cGF0aCBmaWxsPSIjOGI1ODM2IiBkPSJNNyAyNmg0VjE1aDRWOGgtNHY2SDd6Ii8+PHBhdGggZmlsbD0iI2IxZDRjZSIgc3Ryb2tlPSIjMjAzZjQwIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xMiA2aDEwdjNoNHY3SDE1di00aC0zeiIvPjxwYXRoIGZpbGw9IiNlY2YyY2MiIGQ9Ik0yMCA4aDN2N2gtM3oiLz4nLAogICAgbG9nOiAnPHBhdGggZmlsbD0iI2FkNzA0MCIgc3Ryb2tlPSIjMzkyYjI0IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01IDE0aDIwdjlINXoiLz48cGF0aCBmaWxsPSIjZTRiZTc3IiBkPSJNNCAxNWg3djdINHoiLz48cGF0aCBmaWxsPSIjODM1MzM3IiBkPSJNNiAxN2gzdjNINnoiLz48cGF0aCBzdHJva2U9IiNkYjk5NTEiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEzIDE3aDEwbS04IDRoOSIvPicsCiAgICBjb2luOiAnPHBhdGggZmlsbD0iI2Y0Y2I2MCIgc3Ryb2tlPSIjNzI1MjMyIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xMSA1aDEwdjNoNHYxNmgtNHYzSDExdi0zSDdWOGg0eiIvPjxwYXRoIGZpbGw9IiNmZmYwYTEiIGQ9Ik0xMSA5aDN2MTJoLTN6Ii8+PHBhdGggZmlsbD0iI2JlODUzYiIgZD0iTTE4IDEwaDN2MTJoLTN6Ii8+JywKICAgIHNwcm91dDogJzxwYXRoIGZpbGw9IiM4YjYwMzgiIGQ9Ik01IDI1aDIydjNINXoiLz48cGF0aCBmaWxsPSIjOGNiZjczIiBzdHJva2U9IiMyOTQ4MzciIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE2IDI1VjE0TTE2IDE3SDhWN2g1djNoM20wIDVoOFY1aC01djNoLTMiLz48cGF0aCBmaWxsPSIjZDNlNGEwIiBkPSJNOSA4aDN2NEg5bTEwLTVoM3Y0aC0zIi8+JywKICAgIGJvb3Q6ICc8cGF0aCBmaWxsPSIjOTg2ZjQ4IiBzdHJva2U9IiMyNTM5MjkiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEzIDVoMTF2MTNoNHY5SDV2LTVoOHoiLz48cGF0aCBmaWxsPSIjZDhiZDgwIiBkPSJNMTUgN2g3djNoLTdtLTcgMTdoMTh2Mkg4Ii8+PHBhdGggZmlsbD0iI2Q2ZThhMSIgZD0iTTE3IDEzaDZ2M2gtNiIvPicsCiAgICBob3VyZ2xhc3M6ICc8cGF0aCBmaWxsPSIjY2ZhYzY0IiBkPSJNNyAzaDE4djRIN20wIDE5aDE4djRINyIvPjxwYXRoIGZpbGw9IiM5MGMzYzEiIHN0cm9rZT0iIzNiNTM2MSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTAgN2gxMnY1bC01IDUgNSA1djRIMTB2LTRsNS01LTUtNXoiLz48cGF0aCBmaWxsPSIjZmFlMmEwIiBkPSJNMTIgOWg4djJsLTQgNHpNMTIgMjV2LTNsNC0zIDQgM3YzeiIvPicsCiAgICBtb29uOiAnPHBhdGggZmlsbD0iI2Q4ZGJhYyIgc3Ryb2tlPSIjNGI1NzYzIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xNyA0SDl2NEg1djE2aDR2NGgxNnYtNGgzdi03aC04di00aC0zeiIvPjxwYXRoIGZpbGw9IiNmYmYzYzQiIGQ9Ik04IDEwaDN2MTJIOCIvPicsCiAgICBsaWdodG5pbmc6ICc8cGF0aCBmaWxsPSIjZmZlMjk1IiBzdHJva2U9IiNiNDgxNDAiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE2IDNIOHYxNGg4bC00IDEyIDE0LTE4aC05bDUtOHoiLz4nLAogICAgZmxhbWU6ICc8cGF0aCBmaWxsPSIjZWQ4NzRjIiBzdHJva2U9IiM3MDNlMzYiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE2IDN2OGg1VjdoNHY4aDR2MTFoLTV2M0g4di0zSDRWMTZoNXYtNWgzVjZ6Ii8+PHBhdGggZmlsbD0iI2ZmZGQ4MyIgZD0iTTE2IDE0djdoNXY2SDExdi02aDN2LTd6Ii8+JywKICAgIHJvYm90OiAnPHBhdGggZmlsbD0iIzg4YjNhMiIgc3Ryb2tlPSIjMjYzYjM5IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik04IDVoMTZ2NGgzdjEzaC00djVoLTR2LTVoLTZ2NUg5di01SDVWOWgzeiIvPjxwYXRoIGZpbGw9IiMzMzRlNGIiIGQ9Ik05IDEwaDE0djZIOSIvPjxwYXRoIGZpbGw9IiNmZmUyOTkiIGQ9Ik0xMSAxMWgzdjNoLTNtNy0zaDN2M2gtMyIvPjxwYXRoIGZpbGw9IiNjY2UwYjEiIGQ9Ik0xMSAxOGgxMHYySDExIi8+JywKICAgIGRyb25lOiAnPHBhdGggc3Ryb2tlPSIjNTI3YzgxIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik04IDlsOCA3IDgtN004IDI1bDgtOSA4IDkiLz48cGF0aCBmaWxsPSIjYThkOWQxIiBzdHJva2U9IiMyZDUyNWMiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQgNWg4djVING0xNi01aDh2NWgtOE00IDIzaDh2NUg0bTE2LTVoOHY1aC04TTEyIDEyaDh2MTBoLTh6Ii8+PHBhdGggZmlsbD0iI2Y5ZDA3OCIgZD0iTTE0IDE0aDR2NGgtNCIvPicsCiAgICBiZWFyOiAnPHBhdGggZmlsbD0iIzkwNjY0NSIgc3Ryb2tlPSIjMzcyYTI0IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01IDdoNnY0aDEwVjdoNnY4aC0zdjEySDhWMTVINXoiLz48cGF0aCBmaWxsPSIjZDZhYzZjIiBkPSJNMTAgMTloMTJ2NkgxMCIvPjxwYXRoIGZpbGw9IiMxNTI5MjUiIGQ9Ik0xMCAxNGgzdjNoLTNtOS0zaDN2M2gtM20tNiA0aDZ2M2gtNiIvPicsCiAgICBiaXNvbjogJzxwYXRoIGZpbGw9IiM2ZjUwM2IiIHN0cm9rZT0iIzMwMmMyNiIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOCAxMWgxNnYxM2gtNHY1aC04di01SDh6Ii8+PHBhdGggZmlsbD0iI2ViZDVhMSIgZD0iTTMgNWg0djdoNHY0SDV2LTRIM20yMi03aDR2N2gtMnY0aC02di00aDR6Ii8+PHBhdGggZmlsbD0iI2IxODc1OSIgZD0iTTExIDIxaDEwdjVIMTEiLz48cGF0aCBmaWxsPSIjZjNlN2JiIiBkPSJNMTAgMTVoM3YzaC0zbTktM2gzdjNoLTMiLz4nLAogICAgYmVlOiAnPHBhdGggZmlsbD0iI2IxZDhkNSIgc3Ryb2tlPSIjNDQ2NTcyIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik00IDZoOHY4SDRtMTYtOGg4djhoLTgiLz48cGF0aCBmaWxsPSIjZjRjNDZkIiBzdHJva2U9IiM1NTQyMzEiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTkgMTNoMTR2MTFIOXoiLz48cGF0aCBmaWxsPSIjNWQ1MTQyIiBkPSJNMTIgMTRoM3Y5aC0zbTYtOWgzdjloLTMiLz48cGF0aCBmaWxsPSIjZDlmNmU5IiBkPSJNMTAgMTZoM3YzaC0zIi8+PHBhdGggZmlsbD0iIzk5YmRjOCIgZD0iTTE0IDI1aDR2NGgtNCIvPicsCiAgICBzYXc6ICc8cGF0aCBmaWxsPSIjYjZkNmNkIiBzdHJva2U9IiM0MjY3NmMiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE0IDNoNXY1aDV2LTNoM3Y4aC0zdjRoNXY1aC02djRoLTR2NGgtNXYtNWgtNnYzSDV2LTdoNHYtNEg0di01aDVWOGg1eiIvPjxwYXRoIGZpbGw9IiM2Mjg1ODMiIGQ9Ik0xMiAxMmgxMHYxMEgxMnoiLz48cGF0aCBmaWxsPSIjZWZkYmE3IiBkPSJNMTUgMTVoNHY0aC00eiIvPicsCiAgICBoZWFydDogJzxwYXRoIGZpbGw9IiNmMWM1NjUiIHN0cm9rZT0iIzkxNjAzNyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNCA4aDl2NGg2VjhoOXYxMmgtNHY0aC00djRoLTh2LTRIOHYtNEg0eiIvPjxwYXRoIGZpbGw9IiNmZmYwYWEiIGQ9Ik03IDExaDR2NEg3Ii8+JywKICAgIGNoZXN0OiAnPHBhdGggZmlsbD0iI2E5NzA0MSIgc3Ryb2tlPSIjMzkyYjI2IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik00IDEwaDI0djE3SDR6Ii8+PHBhdGggZmlsbD0iI2Q5YTA1OSIgZD0iTTUgNmgyMnY4SDV6Ii8+PHBhdGggZmlsbD0iI2YxZDI3ZiIgZD0iTTggN2gzdjE5SDhtMTAtMTloM3YxOWgtMyIvPjxwYXRoIGZpbGw9IiNlY2RkOTkiIHN0cm9rZT0iIzcxNTcyZSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTQgMTNoNXY4aC01eiIvPicsCiAgICB0cmVlOiAnPHBhdGggZmlsbD0iIzk1NjQ0MSIgZD0iTTEzIDE5aDd2MTBoLTd6Ii8+PHBhdGggZmlsbD0iIzgwYjM2YiIgc3Ryb2tlPSIjMmU1NjNkIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xMyAzaDd2NWg1djVoNHY4SDR2LThoNVY4aDR6Ii8+PHBhdGggZmlsbD0iI2JiZDk4NSIgZD0iTTEzIDdoN3YzSDl2NEg3djRINXYtNWg0VjhoNCIvPicsCiAgICBiYWc6ICc8cGF0aCBmaWxsPSIjOTJhMTZlIiBzdHJva2U9IiMzNDQ5MzUiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEwIDZoMTJ2NWg0djE3SDZWMTFoNHoiLz48cGF0aCBmaWxsPSIjZDRjMDg3IiBkPSJNMTEgM2gxMHY1SDExbS0yIDE3aDE0djZIOSIvPjxwYXRoIGZpbGw9IiM0NzU1NDQiIGQ9Ik0xMCAxMmgxMnYzSDEwbTQgM2g0djRoLTQiLz4nLAogICAgc2VlZDogJzxwYXRoIGZpbGw9IiNiYTkyNTciIHN0cm9rZT0iIzY4NGQzNCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTYgNWg1djVoNXYxMGgtNXY2SDExdi00SDd2LThoNFY5aDV6Ii8+PHBhdGggZmlsbD0iI2U3Y2Q4YyIgZD0iTTE1IDExaDV2M2gtNXY2aC0zdi02aDN6Ii8+PHBhdGggZmlsbD0iIzhmYjk2ZCIgZD0iTTE5IDRoN3Y0aC03Ii8+JywKICAgIHNub3c6ICc8cGF0aCBzdHJva2U9IiNhY2UyZWQiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTE2IDN2MjZNNSA5bDIyIDE0TTUgMjNMMjcgOU0xMSA0bDUgNSA1LTVNMTEgMjhsNS01IDUgNU00IDE0bDctMS0yLTdNMjggMThsLTcgMSAyIDdNNCAxOGw3IDEtMiA3TTI4IDE0bC03LTEgMi03Ii8+PHBhdGggZmlsbD0iI2UyZjVlNyIgZD0iTTEzIDEzaDZ2NmgtNiIvPicsCiAgICB3aW5kOiAnPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTdkNGJmIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik0zIDloMjBWNWgtNm0tMTMgMTFoMjV2NWgtNk03IDI0aDEydjRoLTUiLz4nLAogICAgYm9tYjogJzxwYXRoIGZpbGw9IiM5ZGFkOGQiIHN0cm9rZT0iIzM3NGM0MCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOSAxMmgxNHY0aDR2MTBoLTV2M0g5di0zSDVWMTZoNHoiLz48cGF0aCBmaWxsPSIjZWFiMjZhIiBkPSJNMTQgOGg3djVoLTciLz48cGF0aCBzdHJva2U9IiNjZjk0NTciIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE4IDhWNGg2Ii8+PHBhdGggZmlsbD0iI2ZmZDQ3ZSIgZD0iTTI0IDFoM3YzaDN2M2gtM3YzaC0zVjdoLTNWNGgzeiIvPicsCiAgICBjbG9jazogJzxwYXRoIGZpbGw9IiNhNWMyYzAiIHN0cm9rZT0iIzQxNWY2MCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTAgNmgxM3Y0aDR2MTRoLTR2NEgxMHYtNEg2VjEwaDR6Ii8+PHBhdGggZmlsbD0iI2Y1ZTliYyIgZD0iTTEwIDExaDEzdjEySDEwIi8+PHBhdGggZmlsbD0iIzRhNjg2OCIgZD0iTTE1IDEyaDN2Nmg0djNoLTd6Ii8+PHBhdGggZmlsbD0iI2RjYzg4MyIgZD0iTTEyIDJoOXYzaC05Ii8+JywKICAgIHN0YXI6ICc8cGF0aCBmaWxsPSIjZmZlMGEwIiBkPSJNMTQgMmg0djhoOHY0aC04djhoLTR2LThINnYtNGg4eiIvPicsCiAgfTsKICBjb25zdCB1c2UgPSAoaWQsIHRyYW5zZm9ybSA9ICcnKSA9PiBgPHVzZSBocmVmPSIjdGEtJHtpZH0iJHt0cmFuc2Zvcm0gPyBgIHRyYW5zZm9ybT0iJHt0cmFuc2Zvcm19ImAgOiAnJ30vPmA7CiAgY29uc3QgYXJyb3cgPSAnPHBhdGggZmlsbD0iI2I1ZGI4YiIgZD0iTTIyIDFoNHYzaDR2NGgtNFY2aC00djJoLTRWNGg0eiIvPic7CiAgY29uc3QgcmF5cyA9ICc8cGF0aCBzdHJva2U9IiNlNmM3ODAiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTMgNGw0IDNNMjUgM2wzIDRNMyAyN2w0LTMiLz4nOwogIGNvbnN0IHJpbmcgPSAnPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTNkMmJkIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik05IDJoMTR2NGg2djE4aC02djVIOXYtNUgzVjZoNnoiLz4nOwogIGNvbnN0IG1pbmlDb2luID0gdXNlKCdjb2luJywgJ3RyYW5zbGF0ZSgxNyAxNykgc2NhbGUoLjQ4KScpOwogIGNvbnN0IG1pbmlTZWVkID0gdXNlKCdzZWVkJywgJ3RyYW5zbGF0ZSgxOCAxNykgc2NhbGUoLjQ4KScpOwogIGNvbnN0IGljb25zID0gewogICAgZGV3OiB1c2UoJ2Jvb3QnKSArIHVzZSgnd2luZCcsICd0cmFuc2xhdGUoLTIgLTEpIHNjYWxlKC41KScpLAogICAgZXZlcmdyZWVuOiB1c2UoJ3Nwcm91dCcpICsgYXJyb3csCiAgICBib3VudHk6IHVzZSgnbG9nJywgJ3RyYW5zbGF0ZSgwIC03KScpICsgdXNlKCdsb2cnLCAndHJhbnNsYXRlKDEgMyknKSArIGFycm93LAogICAgbW9vbmxpZ2h0OiB1c2UoJ2JhZycpICsgdXNlKCdtb29uJywgJ3RyYW5zbGF0ZSgxNiAtMSkgc2NhbGUoLjU1KScpLAogICAgaGFzdGU6IHVzZSgnYXhlJykgKyB1c2UoJ3dpbmQnLCAndHJhbnNsYXRlKDE0IDE4KSBzY2FsZSguNTUpJyksCiAgICBzYXA6IHVzZSgnbG9nJywgJ3RyYW5zbGF0ZSgtMyAtMyknKSArIG1pbmlDb2luLAogICAgZ29sZGVuaGVhcnQ6IHVzZSgnaGVhcnQnKSArIHVzZSgnY29pbicsICd0cmFuc2xhdGUoOSA5KSBzY2FsZSguNDUpJyksCiAgICBsdW1iZXJqYWNrOiB1c2UoJ2xvZycsICd0cmFuc2xhdGUoMiA1KScpICsgdXNlKCdheGUnLCAndHJhbnNsYXRlKC0xIC0yKSBzY2FsZSguODMpJyksCiAgICBjcml0OiB1c2UoJ2xvZycsICd0cmFuc2xhdGUoLTEgNykgc2NhbGUoLjg1KScpICsgdXNlKCdsb2cnLCAndHJhbnNsYXRlKDIgLTEpIHNjYWxlKC44NSknKSArIHVzZSgnc3RhcicsICd0cmFuc2xhdGUoMTYgLTIpIHNjYWxlKC41KScpLAogICAgY2hhaW46IHVzZSgndHJlZScsICd0cmFuc2xhdGUoLTEgNCkgc2NhbGUoLjcpJykgKyB1c2UoJ3RyZWUnLCAndHJhbnNsYXRlKDEzIDQpIHNjYWxlKC42NSknKSArICc8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNlYWMxNmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTUgMjVoOHYtNWg4djVoNyIvPicsCiAgICBkcmVhbXdvb2Q6IHVzZSgndHJlZScsICd0cmFuc2xhdGUoMCAzKSBzY2FsZSguODUpJykgKyB1c2UoJ21vb24nLCAndHJhbnNsYXRlKDE2IC0xKSBzY2FsZSguNTUpJyksCiAgICBhbmNpZW50OiB1c2UoJ3RyZWUnKSArICc8cGF0aCBzdHJva2U9IiNkNmJjODYiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE1IDIzbC04IDdtMTAtNyA4IDdNMTAgMjloMTQiLz4nICsgYXJyb3csCiAgICBsaWZlOiByaW5nICsgdXNlKCdsb2cnLCAndHJhbnNsYXRlKDUgLTEpIHNjYWxlKC43MiknKSArIHVzZSgnbG9nJywgJ3RyYW5zbGF0ZSg1IDgpIHNjYWxlKC43MiknKSwKICAgIHByaXNtOiB1c2UoJ2xvZycsICd0cmFuc2xhdGUoLTIgMyknKSArICc8cGF0aCBmaWxsPSIjYWZiYmU2IiBkPSJNMTcgM2g4bDUgNy05IDktOC05eiIvPjxwYXRoIGZpbGw9IiNkYjllZTEiIGQ9Ik0yMSA0djEybC02LTZ6Ii8+PHBhdGggZmlsbD0iIzhmZTBjMCIgZD0iTTIzIDRsNSA2LTUgNXoiLz4nLAogICAgd29ybGRyb290OiB1c2UoJ3Nwcm91dCcsICd0cmFuc2xhdGUoMCAtNSknKSArICc8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNkYWI3ODMiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE2IDE4djlIOHYzbTgtNWg4djVtLTgtOEg1djQiLz4nICsgbWluaVNlZWQsCiAgICB0aW1lbG9yZDogdXNlKCdob3VyZ2xhc3MnKSArIHVzZSgnbW9vbicsICd0cmFuc2xhdGUoMjAgLTEpIHNjYWxlKC40KScpICsgJzxwYXRoIHN0cm9rZT0iI2IyYThlOCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMiAxMHYxNWg1bTIzLTE1VjdoLTQiLz4nLAogICAgZm9yZXN0OiB1c2UoJ3RyZWUnLCAndHJhbnNsYXRlKC0yIDUpIHNjYWxlKC41OCknKSArIHVzZSgndHJlZScsICd0cmFuc2xhdGUoMTUgNSkgc2NhbGUoLjU4KScpICsgdXNlKCd0cmVlJywgJ3RyYW5zbGF0ZSg2IC0xKSBzY2FsZSguNjUpJykgKyAnPHBhdGggc3Ryb2tlPSIjZTNjMTZmIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01IDI5aDIyTTExIDI1djRtMTEtNHY0Ii8+JywKICAgIHRhbmRlbTogdXNlKCdyb2JvdCcsICd0cmFuc2xhdGUoLTIgNykgc2NhbGUoLjYzKScpICsgdXNlKCdkcm9uZScsICd0cmFuc2xhdGUoMTIgLTEpIHNjYWxlKC42MyknKSArICc8cGF0aCBzdHJva2U9IiNlOWM2NzkiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTE1IDIwaDV2LTYiLz4nLAogICAgZmxlZXQ6IHVzZSgncm9ib3QnLCAndHJhbnNsYXRlKC0yIC0xKSBzY2FsZSguNTkpJykgKyB1c2UoJ2Ryb25lJywgJ3RyYW5zbGF0ZSgxNSAtMSkgc2NhbGUoLjU1KScpICsgdXNlKCdiZWFyJywgJ3RyYW5zbGF0ZSgwIDE1KSBzY2FsZSguNTQpJykgKyB1c2UoJ2Jpc29uJywgJ3RyYW5zbGF0ZSgxNSAxNSkgc2NhbGUoLjU1KScpLAogICAgYmF0dGVyeTogJzxwYXRoIGZpbGw9IiM4MGJlYTQiIHN0cm9rZT0iIzM0NGU0MSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOSA3aDE2djIySDl6Ii8+PHBhdGggZmlsbD0iI2RlY2NhMSIgZD0iTTEzIDNoOHY0aC04Ii8+JyArIHVzZSgnbGlnaHRuaW5nJywgJ3RyYW5zbGF0ZSg5IDkpIHNjYWxlKC41KScpLAogICAgdHdpbnM6IHVzZSgncm9ib3QnLCAndHJhbnNsYXRlKC0yIC0yKSBzY2FsZSguNzYpJykgKyB1c2UoJ3JvYm90JywgJ3RyYW5zbGF0ZSg5IDEwKSBzY2FsZSguNzMpJyksCiAgICBzcXVpcnJlbDogJzxwYXRoIGZpbGw9IiNiMjg1NTQiIHN0cm9rZT0iIzUwM2IyYiIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNNSAxMGg2djVIN3Y4aDZWOWg1VjVoN3YxMmgtNXY2aDV2Nkg5di0zSDNWMTB6Ii8+PHBhdGggZmlsbD0iI2UzYzg5MiIgZD0iTTE0IDE3aDV2OGgtNSIvPjxwYXRoIGZpbGw9IiMxNDJkMjkiIGQ9Ik0yMCA5aDN2M2gtMyIvPicgKyB1c2UoJ2xvZycsICd0cmFuc2xhdGUoMTggMTgpIHNjYWxlKC40NSknKSwKICAgIHRyZWFudDogdXNlKCd0cmVlJykgKyAnPHBhdGggZmlsbD0iI2YyZTE5YyIgZD0iTTkgMTRoNHYzSDltMTAtM2g0djNoLTQiLz48cGF0aCBzdHJva2U9IiNiNDkyNjgiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTE0IDI0bC02IDVtMTItNSA2IDUiLz4nLAogICAgYmVhdmVyOiAnPHBhdGggZmlsbD0iIzhkNzA1MiIgc3Ryb2tlPSIjNDIzOTJjIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik04IDVoMTZ2MTNoLTR2MTFIOFYxOUg0di04aDR6Ii8+PHBhdGggZmlsbD0iI2M2YTU3NSIgZD0iTTE2IDEyaDEwdjlIMTYiLz48cGF0aCBmaWxsPSIjZjNlYWQwIiBkPSJNMTggMjBoM3Y1aC0zbTQtNWgzdjVoLTMiLz48cGF0aCBmaWxsPSIjMWMzMDI5IiBkPSJNMjAgOGgzdjNoLTMiLz48cGF0aCBmaWxsPSIjNmI1MDNkIiBkPSJNMSAyM2g3djdIMSIvPicgKyB1c2UoJ2xvZycsICd0cmFuc2xhdGUoMTkgMjApIHNjYWxlKC40KScpLAogICAgaGl2ZTogdXNlKCdiZWUnKSArICc8cGF0aCBzdHJva2U9IiM5YmRhZTAiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQgMjRsLTMgNW0yNS01IDQgNSIvPicgKyB1c2UoJ2JlZScsICd0cmFuc2xhdGUoMTggLTIpIHNjYWxlKC40KScpLAogICAgYm9vbWVyYW5nOiB1c2UoJ2F4ZScsICd0cmFuc2xhdGUoMiAwKSBzY2FsZSguOCknKSArICc8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNhOWQ4YjkiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTMgOVY1aDltMTQgN2g0djE0SDE1di00Ii8+PHBhdGggZmlsbD0iI2E5ZDhiOSIgZD0iTTExIDIwaDR2OGgtNHoiLz4nLAogICAgb3JiaXQ6IHJpbmcgKyB1c2UoJ2F4ZScsICd0cmFuc2xhdGUoLTIgLTEpIHNjYWxlKC42NiknKSArIHVzZSgnYXhlJywgJ3RyYW5zbGF0ZSgxNCAxMykgc2NhbGUoLjU5KScpLAogICAgcmljb2NoZXQ6IHVzZSgnYXhlJywgJ3RyYW5zbGF0ZSgtMiAtMikgc2NhbGUoLjcyKScpICsgJzxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2YxZDg5NCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNMTIgMjRoOHYtN2g4Ii8+PHBhdGggZmlsbD0iIzg4YjVhOCIgZD0iTTI0IDI0aDV2NWgtNW0wLTEzaDV2NWgtNSIvPicsCiAgICBzYXdibGFkZTogdXNlKCdzYXcnLCAndHJhbnNsYXRlKDcgMCkgc2NhbGUoLjg2KScpICsgJzxwYXRoIHN0cm9rZT0iI2U0Yzk4MCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMSAxM2g5bS04IDZoOG0tNiA2aDciLz4nLAogICAgd2F2ZTogdXNlKCdheGUnLCAndHJhbnNsYXRlKC0zIDUpIHNjYWxlKC42NiknKSArICc8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNjNWU1YmUiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTE3IDRoN3Y1aDR2MTRoLTR2NWgtN20tMi0yMGg1djE2aC01Ii8+JywKICAgIGFmdGVyaW1hZ2U6IHVzZSgnYXhlJywgJ3RyYW5zbGF0ZSgxMyAxKSBzY2FsZSguNzUpJykgKyAnPHBhdGggZmlsbD0iIzc1OWQ5YiIgZD0iTTUgNWg3djZINW0tMyAzaDEzdjEwaC0zdjZIOHYtNkg2djZIMnoiLz48cGF0aCBmaWxsPSIjNDY2YjY4IiBkPSJNMTkgMTFoNnY1aC02bS0xIDNoOXY5aC05Ii8+JywKICAgIHBpbG90OiB1c2UoJ3JvYm90JykgKyAnPHBhdGggZmlsbD0iI2U2YzA3NCIgZD0iTTEwIDE3aDEydjRIMTAiLz48cGF0aCBmaWxsPSIjNjg4NTgxIiBkPSJNMSAxM2g0djEySDFtMjYtMTJoNHYxMmgtNCIvPicgKyB1c2UoJ3NhdycsICd0cmFuc2xhdGUoMjEgMjApIHNjYWxlKC4zNSknKSwKICAgIG1pc3NpbGVzOiAnPHBhdGggZmlsbD0iI2JhY2RkMCIgc3Ryb2tlPSIjNDA1YTYyIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik00IDE5TDE4IDVoOXY5TDEzIDI4bC0yLTl6Ii8+PHBhdGggZmlsbD0iI2Q5YTc2YyIgZD0iTTE5IDVoN3Y3aC03Ii8+PHBhdGggZmlsbD0iI2UyYmM2YSIgZD0iTTUgMjVoLTN2NWg1di0zaDN2LTRINSIvPjxwYXRoIHN0cm9rZT0iI2VmZDRhMSIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMTQgMTdsNy03Ii8+JywKICAgIHN0b21wOiAnPHBhdGggZmlsbD0iIzk0YjNhNCIgc3Ryb2tlPSIjMzc1MzQ5IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik02IDVoMjB2MTBINnoiLz48cGF0aCBmaWxsPSIjYjc4NTUwIiBkPSJNMTQgMTVoNXYxMmgtNSIvPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2U0YzQ4NCIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNMiAyMnY1aDZtMTctNXY1aDVNMyAzMGgyNiIvPicsCiAgICBvdmVyZHJpdmU6IHVzZSgncm9ib3QnLCAndHJhbnNsYXRlKC0xIDQpIHNjYWxlKC44NyknKSArIHVzZSgnZmxhbWUnLCAndHJhbnNsYXRlKDE1IC0xKSBzY2FsZSguNTUpJyksCiAgICBsaWdodG5pbmc6IHVzZSgnbGlnaHRuaW5nJykgKyAnPHBhdGggZmlsbD0iI2FhZDZjMiIgZD0iTTEgMjNoNnY2SDFtMjQtNmg2djZoLTYiLz48cGF0aCBzdHJva2U9IiNhY2RjZGQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTcgMjNsNy00bTUtMSA3IDUiLz4nLAogICAgYnVybjogdXNlKCdheGUnLCAndHJhbnNsYXRlKC0xIDQpIHNjYWxlKC44MiknKSArIHVzZSgnZmxhbWUnLCAndHJhbnNsYXRlKDE1IC0xKSBzY2FsZSguNTQpJyksCiAgICBmcm9zdDogdXNlKCdheGUnLCAndHJhbnNsYXRlKC0xIDQpIHNjYWxlKC44MiknKSArIHVzZSgnc25vdycsICd0cmFuc2xhdGUoMTQgLTEpIHNjYWxlKC41NSknKSwKICAgIHRvcm5hZG86ICc8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNhNmQyYmMiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTIgNmgyN3Y0SDd2NWgxOHY1SDEydjRoOXY0aC02Ii8+JyArIHVzZSgnbG9nJywgJ3RyYW5zbGF0ZSgxOSAxNykgc2NhbGUoLjQzKScpLAogICAgc3R1bXBib21iOiB1c2UoJ2xvZycsICd0cmFuc2xhdGUoMCA1KScpICsgdXNlKCdib21iJywgJ3RyYW5zbGF0ZSgxMiAtMykgc2NhbGUoLjY2KScpLAogICAgZG9taW5vOiB1c2UoJ3RyZWUnLCAndHJhbnNsYXRlKC0zIDEpIHNjYWxlKC42NSknKSArIHVzZSgndHJlZScsICd0cmFuc2xhdGUoMTQgLTEpIHJvdGF0ZSgzNiA4IDIwKSBzY2FsZSguNjUpJykgKyAnPHBhdGggc3Ryb2tlPSIjZGZjNDgyIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik01IDI5aDI0Ii8+PHBhdGggZmlsbD0iI2MxZDU5OSIgZD0iTTE0IDE1aDd2LTNsNSA1LTUgNXYtM2gtN3oiLz4nLAogICAgbWV0ZW9yOiAnPHBhdGggZmlsbD0iI2EzODg3MCIgc3Ryb2tlPSIjNDYzZjM2IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik02IDE3aDEybDcgNy01IDZIOWwtNi02eiIvPjxwYXRoIHN0cm9rZT0iI2VmYjc1ZCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNMTUgMTNMMjUgM20tNSAxNUwzMCA4bS0yMSA0IDktOSIvPjxwYXRoIGZpbGw9IiNlMGI3N2IiIGQ9Ik05IDIwaDZ2NEg5Ii8+JywKICAgIG1hZ25ldDogdXNlKCdiYWcnKSArICc8cGF0aCBmaWxsPSIjMTQxZjJkIiBzdHJva2U9IiNiNTljZDciIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEzIDExaDd2M2gzdjhoLTN2M2gtN3YtM2gtM3YtOGgzeiIvPjxwYXRoIGZpbGw9IiNjZWI1ZTciIGQ9Ik0xNSAxNWg0djVoLTQiLz4nICsgdXNlKCdsb2cnLCAndHJhbnNsYXRlKDIyIDIyKSBzY2FsZSguMzIpJyksCiAgICBjb2luYnVyc3Q6IHVzZSgndHJlZScpICsgbWluaUNvaW4gKyB1c2UoJ2NvaW4nLCAndHJhbnNsYXRlKDEgMSkgc2NhbGUoLjQ2KScpLAogICAgbHVja3k6IHVzZSgnY2hlc3QnKSArIHVzZSgnc3RhcicsICd0cmFuc2xhdGUoMTAgLTMpIHNjYWxlKC44KScpLAogICAgY29tYm86IHVzZSgnYXhlJywgJ3RyYW5zbGF0ZSgtMSAtMikgc2NhbGUoLjc1KScpICsgdXNlKCdheGUnLCAndHJhbnNsYXRlKDEyIDEwKSBzY2FsZSguNjYpJykgKyAnPHBhdGggc3Ryb2tlPSIjZWVkNTg1IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0zIDI4aDltLTgtNGg3Ii8+JywKICAgIHNwcmluZzogdXNlKCdzcHJvdXQnKSArIHVzZSgnc3RhcicsICd0cmFuc2xhdGUoMTcgLTIpIHNjYWxlKC41KScpLAogICAgc2VlZGJ1cnN0OiB1c2UoJ2JvbWInLCAndHJhbnNsYXRlKDEgMykgc2NhbGUoLjg1KScpICsgdXNlKCdzcHJvdXQnLCAndHJhbnNsYXRlKDYgLTQpIHNjYWxlKC42NSknKSwKICAgIHRpbWVwb2NrZXQ6IHVzZSgnYmFnJykgKyB1c2UoJ2Nsb2NrJywgJ3RyYW5zbGF0ZSgxMSAxMCkgc2NhbGUoLjY0KScpLAogICAgcG93ZXIxOiB1c2UoJ2F4ZScpICsgYXJyb3csCiAgICBwb3dlcjI6IHVzZSgnYXhlJykgKyB1c2UoJ2Nsb2NrJywgJ3RyYW5zbGF0ZSgxNyAxNykgc2NhbGUoLjQ4KScpLAogICAgcG93ZXIzOiB1c2UoJ2F4ZScpICsgdXNlKCdmbGFtZScsICd0cmFuc2xhdGUoMTcgMSkgc2NhbGUoLjQ5KScpLAogICAgbW92ZTE6IHVzZSgnYm9vdCcpICsgYXJyb3csCiAgICBtb3ZlMjogdXNlKCdib290JykgKyB1c2UoJ3dpbmQnLCAndHJhbnNsYXRlKC0zIDApIHNjYWxlKC41NSknKSwKICAgIG1vdmUzOiB1c2UoJ2Jvb3QnKSArICc8cGF0aCBmaWxsPSIjYzZlNGE3IiBkPSJNMiA3aDl2M0g0djNoN3YzSDZ2M2g1djNIOFYxM0gyeiIvPicsCiAgICByYW5nZTE6IHJpbmcgKyB1c2UoJ2F4ZScsICd0cmFuc2xhdGUoNCA0KSBzY2FsZSguNzIpJyksCiAgICByYW5nZTI6IHJpbmcgKyB1c2UoJ2F4ZScsICd0cmFuc2xhdGUoMyAzKSBzY2FsZSguNzIpJykgKyBtaW5pQ29pbiwKICAgIHJhbmdlMzogcmluZyArIHVzZSgnYXhlJywgJ3RyYW5zbGF0ZSgxIDEpIHNjYWxlKC43KScpICsgdXNlKCdiYWcnLCAndHJhbnNsYXRlKDE3IDE3KSBzY2FsZSguNDcpJyksCiAgICBib3QxOiB1c2UoJ3JvYm90JyksIGJvdDI6IHVzZSgnZHJvbmUnKSwgYm90MzogdXNlKCdiZWFyJyksIGJvdDQ6IHVzZSgnYmlzb24nKSwKICAgIHRpbWUxOiB1c2UoJ2hvdXJnbGFzcycpICsgYXJyb3csCiAgICB0aW1lMjogdXNlKCdob3VyZ2xhc3MnKSArIHVzZSgnc3Byb3V0JywgJ3RyYW5zbGF0ZSgxOSAxNSkgc2NhbGUoLjQyKScpLAogICAgdGltZTM6IHVzZSgnaG91cmdsYXNzJykgKyByYXlzLAogIH07CiAgY29uc3Qgc3ltYm9sID0gKGlkLCBib2R5KSA9PiBgPHN5bWJvbCBpZD0idGEtJHtpZH0iIHZpZXdCb3g9IjAgMCAzMiAzMiI+JHtib2R5fTwvc3ltYm9sPmA7CiAgY29uc3Qgc3ltYm9scyA9IE9iamVjdC5lbnRyaWVzKFApLm1hcCgoW2lkLCBib2R5XSkgPT4gc3ltYm9sKGlkLCBib2R5KSkuam9pbignJykKICAgICsgT2JqZWN0LmVudHJpZXMoaWNvbnMpLm1hcCgoW2lkLCBib2R5XSkgPT4gc3ltYm9sKGBlZmZlY3QtJHtpZH1gLCBib2R5KSkuam9pbignJyk7CiAgY29uc3Qgc3ByaXRlID0gYDxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPiR7c3ltYm9sc308L3N2Zz5gOwogIGNvbnN0IGljb24gPSAoaWQsIGNscyA9ICcnKSA9PiBgPHN2ZyBjbGFzcz0idGEtaWNvbiAke2Nsc30iIHZpZXdCb3g9IjAgMCAzMiAzMiIgYXJpYS1oaWRkZW49InRydWUiIGZvY3VzYWJsZT0iZmFsc2UiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+JHt1c2UoaWNvbnNbaWRdID8gYGVmZmVjdC0ke2lkfWAgOiBpZCl9PC9zdmc+YDsKICBjb25zdCBsb2cgPSAnPHBhdGggZmlsbD0iI2IzN2Q0ZCIgc3Ryb2tlPSIjNDIzMzI2IiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0wIDBoMzR2MTBIMHoiLz48cGF0aCBmaWxsPSIjZTZjNzg5IiBkPSJNMCAxaDh2OEgwIi8+PHBhdGggZmlsbD0iIzliNmIzZSIgZD0iTTIgM2g0djRIMiIvPjxwYXRoIGZpbGw9IiNkNjliNWIiIGQ9Ik0xMiAyaDE5djJIMTIiLz4nOwogIGNvbnN0IHVuY2xlID0gYDxnIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+CiAgICA8cGF0aCBmaWxsPSIjMjUzZDNkIiBkPSJNNyA1aDE5djE1SDdtLTQgMTVoMjV2MTNoLTV2OEg4di04SDN6Ii8+CiAgICA8cGF0aCBmaWxsPSIjZDlhNzc5IiBkPSJNOSA4aDE1djEySDltLTggOWg1djlIMW0yNS05aDV2OWgtNSIvPgogICAgPHBhdGggZmlsbD0iI2FkNzQ0ZiIgZD0iTTggMTJoM3Y4SDhtOS0xaDd2NGgtNyIvPgogICAgPHBhdGggZmlsbD0iIzY4ODg3YSIgZD0iTTkgMWgxM3Y1SDZ2NGgyMlY2aC02Ii8+CiAgICA8cGF0aCBmaWxsPSIjOWFhZjgyIiBkPSJNMTAgMmgxMXYySDEwbS0zIDRoMTl2Mkg3Ii8+CiAgICA8cGF0aCBmaWxsPSIjZjBkMmEwIiBkPSJNMTIgMTBoMTB2M0gxMm03IDRoNnYzaC02Ii8+CiAgICA8cGF0aCBmaWxsPSIjMjYzMjJiIiBkPSJNMTIgMTNoMnYyaC0ybTgtMmgydjJoLTJtLTkgM2gxMXYzSDExIi8+CiAgICA8cGF0aCBmaWxsPSIjYjY3ODQ1IiBkPSJNNSAyM2gyM3YxMkg1Ii8+PHBhdGggZmlsbD0iI2RkYWM2YiIgZD0iTTYgMjRoNXYySDZtMTAtMmg1djJoLTVtLTggNGg0djJoLTRtMTAtMmg2djJoLTYiLz4KICAgIDxwYXRoIGZpbGw9IiM0ZDc1NzkiIGQ9Ik0xMCAyM2g0djEwaDdWMjNoNHYxOEg4VjMxaDIiLz4KICAgIDxwYXRoIGZpbGw9IiM3ODliOTQiIGQ9Ik0xMSAzM2gxMHY0SDExbS0zIDRoNXYxMEg4bTEwLTEwaDV2MTBoLTUiLz4KICAgIDxwYXRoIGZpbGw9IiNjZGI2ODMiIGQ9Ik0xMSAzNGgydjJoLTJtNi0yaDJ2MmgtMiIvPgogICAgPHBhdGggZmlsbD0iIzRiM2IyZCIgZD0iTTUgNDhoOXY1SDN2LTNoMm0xNC0yaDl2NUgxOHYtM2gxIi8+CiAgPC9nPmA7CiAgY29uc3Qgd2hlZWxzID0gWzQyLCAxODFdLm1hcCgoeCkgPT4gYDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKCR7eH0gMTQ2KSI+CiAgICA8cGF0aCBmaWxsPSIjMTkyNzI1IiBkPSJNLTEzLTloNHYtNEg5djRoNFY5SDl2NEgtOVY5aC00eiIvPgogICAgPHBhdGggZmlsbD0iIzUzNjU1ZCIgZD0iTS04LTZoM3YtM0g1djNoM1Y2SDV2M0gtNVY2aC0zeiIvPgogICAgPGcgY2xhc3M9Im1lcmNoYW50LXNwb2tlIj48cGF0aCBmaWxsPSIjYTZiN2ExIiBkPSJNLTItN2g0VjdoLTRtLTUtOUg3djRILTciLz48L2c+CiAgPC9nPmApLmpvaW4oJycpOwogIGNvbnN0IHRydWNrID0gYDxnIGlkPSJtZXJjaGFudC10cnVjayI+CiAgICA8cGF0aCBmaWxsPSIjMTYyNjIwIiBvcGFjaXR5PSIuNSIgZD0iTTAgMTU1aDI0MHY4SDAiLz4KICAgIDxwYXRoIGZpbGw9IiM0MTZiNjEiIHN0cm9rZT0iIzE4M2QzNSIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNNCAxNDFWMTAxbDE2LTI1aDQ2djIyaDEydjQyeiIvPgogICAgPHBhdGggZmlsbD0iIzc5YTc5OSIgZD0iTTIwIDc5aDQzdjVIMjBtLTkgMzVoNTJ2M0gxMW0tMiA2aDU0djVIOSIvPgogICAgPHBhdGggZmlsbD0iIzI2M2Y0MyIgZD0iTTIzIDg2aDM2djI0SDEzdi0xMHoiLz4KICAgIDxwYXRoIGZpbGw9IiNhMGM5YzIiIGQ9Ik0yNCA4NmgxMnYzSDI1bC04IDE3aC00di02eiIvPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYgODgpIHNjYWxlKC40NSkiPiR7dW5jbGV9PC9nPgogICAgPHBhdGggZmlsbD0iIzUzODM3NiIgZD0iTTM0IDExMmgyOHYyOEgzNCIvPjxwYXRoIGZpbGw9IiNiMGM0YTMiIGQ9Ik00OSAxMTVoMTB2M0g0OSIvPgogICAgPHBhdGggZmlsbD0iI2U1ZDM5MiIgZD0iTTQgMTI0aDd2OEg0Ii8+PHBhdGggZmlsbD0iI2JiYzhhZSIgZD0iTTAgMTQwaDIwdjVIMCIvPgogICAgPHBhdGggZmlsbD0iIzg3NWIzYyIgc3Ryb2tlPSIjNDUzYTJjIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik03NSAxMDZoMTU2djM1SDc1eiIvPgogICAgPHBhdGggZmlsbD0iI2JlOTQ1ZSIgZD0iTTc4IDEwOWgxNDl2NUg3OG0wIDEwaDE0OXYzSDc4bTAgMTBoMTQ5djNINzgiLz4KICAgIDxwYXRoIGZpbGw9IiNiMWIzOWMiIGQ9Ik03OSAxMDZoNXYzNWgtNW02Ni0zNWg1djM1aC01bTc1LTM1aDV2MzVoLTUiLz4KICAgIDxwYXRoIGZpbGw9IiMyOTNjMzQiIGQ9Ik02OSAxMzloMTY4djdINjkiLz4KICAgIDxnIGlkPSJtZXJjaGFudC1jYXJnbyIgb3BhY2l0eT0iMCI+JHtbMCwxLDJdLm1hcChyb3cgPT4gWzAsMSwyLDNdLm1hcChjb2wgPT4gYDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKCR7ODUgKyBjb2wgKiAzNH0gJHs5OSAtIHJvdyAqIDExfSkiPiR7bG9nfTwvZz5gKS5qb2luKCcnKSkuam9pbignJyl9PC9nPgogICAgJHt3aGVlbHN9CiAgPC9nPmA7CiAgY29uc3Qgc2NlbmUgPSBgPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJtZXJjaGFudC1zY2VuZSIgdmlld0JveD0iMCAwIDY0MCAyMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i5oi05bi95a2Q55qE5aSn5Y+U5byA552A57u/6Imy5pyo5p2Q6LSn6L2m5p2l5Yiw5p6X5Zy65pS26LSt5pyo5aS0IiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPgogICAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJtZXJjaGFudC1za3kiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iIzI1M2UzOSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzQwNTc0NyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogICAgPHBhdGggZmlsbD0idXJsKCNtZXJjaGFudC1za3kpIiBkPSJNMCAwaDY0MHYyMjBIMCIvPjxwYXRoIGZpbGw9IiNhOWI3OTciIG9wYWNpdHk9Ii4yMyIgZD0iTTQ5MCAxOWgzMnY3aC0zMm0tNDA3IDVoNDF2N0g4MyIvPgogICAgPHBhdGggZmlsbD0iIzFjMzcyYyIgZD0iTTAgNDBoMjB2MTNoMjB2MjJoMjBWNThoMTZ2LTloMjF2MzZoMjJWNDdoMTNWMzJoMjB2NDNoMjVWNTRoMTV2LTloMTh2NDFoMjFWMzhoMjF2MjZoMTh2MjBoMjRWNTNoMTZWMzhoMjF2NDNoMThWNDdoMTdWMjloMjJ2NTVoMjhWNDloMTh2LTloMjJ2NDdoMjhWMzZoMTd2MjVoMTV2MjZoMjJWNTBoMTRWMzJoMjV2NDhoMTlWNDNoMjJ2MjNoMjB2MjNoMjBWNTBoMTZ2LThoMjZ2ODBIMHoiLz4KICAgIDxwYXRoIGZpbGw9IiMzNjUzNDEiIGQ9Ik0wIDEyMmg2NDB2NDRIMCIvPjxwYXRoIGZpbGw9IiM5YThkNjYiIGQ9Ik0wIDE3Mmg2NDB2NDhIMCIvPjxwYXRoIGZpbGw9IiM3OTZlNTEiIGQ9Ik0wIDE4NGg2NDB2MzZIMCIvPgogICAgPHBhdGggZmlsbD0iI2I1YTc4MCIgZD0iTTEzIDE4N2gyM3YzSDEzbTQwIDE0aDM0djNINTNtMTU4LTEzaDM4djNoLTM4bTkxIDEyaDMwdjNoLTMwbTc0LTE3aDE4djNoLTE4bTEyMSAxN2gzM3YzaC0zM202Ni0yMGgzMXYzaC0zMSIvPgogICAgPHBhdGggZmlsbD0iIzRlNmY0NCIgZD0iTTAgMTUzaDY0MHY4SDAiLz48cGF0aCBmaWxsPSIjYWFjMDg0IiBkPSJNMjcgMTQ3aDR2MTJoLTRtNi04aDR2OGgtNG0xNDMtMTBoNHYxMGgtNG02LTE0aDR2MTRoLTRtNzQtOWg0djloLTRtMzAwLTloNHY5aC00Ii8+CiAgICA8cGF0aCBmaWxsPSIjN2U2MjQ1IiBkPSJNNDcgNTRoOXYxMTFoLTkiLz48cGF0aCBmaWxsPSIjNWU4MjRkIiBzdHJva2U9IiMyOTRiMzQiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTI1IDE1aDQ0djEyaDE0djMxSDcwdjEzSDI3VjU4SDEzVjI5aDEyeiIvPjxwYXRoIGZpbGw9IiM5OGI2NzIiIGQ9Ik0yNiAxOWgzMnY0SDI2djlIMTd2MTBoLTRWMjloMTJ6Ii8+CiAgICA8cGF0aCBmaWxsPSIjYzVhYzc2IiBzdHJva2U9IiM2MTRhMzUiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTY0IDgzaDc4djI4SDY0eiIvPjxwYXRoIGZpbGw9IiM4YTY2NDAiIGQ9Ik03NSA5MmgxN3Y0SDc1bTUgM2gxM3Y0SDgwbTExLTdoN3Y2aC03bTctMTJoMjB2NEg5OG01IDNoMTN2NGgtMTNtOS00aDV2MTFoLTUiLz48cGF0aCBmaWxsPSIjODA2MTQ0IiBkPSJNMTAzIDExMmg2djQxaC02Ii8+CiAgICA8ZyBpZD0ibWVyY2hhbnQtcGlsZSI+JHtbMCwxLDJdLm1hcChyb3cgPT4gWzAsMSwyXS5tYXAoY29sID0+IGA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgkezcyICsgY29sICogMzJ9ICR7MTYxIC0gcm93ICogMTF9KSI+JHtsb2d9PC9nPmApLmpvaW4oJycpKS5qb2luKCcnKX08L2c+CiAgICA8ZyBpZD0ibWVyY2hhbnQtZHVzdCI+PC9nPiR7dHJ1Y2t9CiAgICA8ZyBpZD0ibWVyY2hhbnQtdW5jbGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxMjYpIiBvcGFjaXR5PSIwIj4ke3VuY2xlfTwvZz4KICAgIDxnIGlkPSJtZXJjaGFudC1sb2FkaW5nIj48L2c+PGcgaWQ9Im1lcmNoYW50LWNvaW5zIj48L2c+CiAgPC9zdmc+YDsKICB3aW5kb3cuVElNQkVSX0FSVF9LSVQgPSBPYmplY3QuZnJlZXplKHsgaWNvbnMsIHBpZWNlczogUCwgc3ltYm9scywgc3ByaXRlLCBpY29uLCBsb2csIHVuY2xlLCB0cnVjaywgc2NlbmUgfSk7Cn0pKCk7Cg=="></script>
+  <script src="code/art-refresh.js"></script>
 </body>
 </html>
